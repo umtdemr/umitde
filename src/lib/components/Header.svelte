@@ -1,26 +1,37 @@
 <script>
-    import ProfileImg from '$lib/images/umit-demir.jpeg'
+    import { page } from '$app/stores';
+    import Logo from '$lib/components/Logo.svelte'
     import HeaderBgImg from '$lib/images/header_bg.jpeg'
+
+    export let showBg = false;
 </script>
 
 
 <header>
     <div class="header_wrapper absolute">
         <div class="container">
-            <nav>
-               <a>Ümit Demir</a>
+            <nav class="header_nav">
+                <div class="nav_left">
+                   <Logo />
+                </div>
+                <div class="nav_right">
+                    <a href="/about" aria-current={$page.url.pathname === "/about" ? 'page' : undefined}>About</a>
+                    <a href="/portfolio" aria-current={$page.url.pathname === "/portfolio" ? 'page' : undefined}>Portfolio</a>
+                </div>
             </nav>
         </div>
     </div>
-    <div class="header_bg__wrapper">
-        <img class="header_bg" src={HeaderBgImg} alt="a house view from Istanbul / Adalar (Kınalı ada)" />
-        <div class="container">
-            <span class="header_bg__info">
-                <span class="header_bg__info--big">Hi, this is Ümit</span>
-                <span>Here, I share.</span>
-            </span>
+    {#if showBg}
+        <div class="header_bg__wrapper">
+            <img class="header_bg" src={HeaderBgImg} alt="a house view from Istanbul / Adalar (Kınalı ada)" />
+            <div class="container">
+                <span class="header_bg__info">
+                    <span class="header_bg__info--big">Hi, this is Ümit</span>
+                    <span>Here, I share.</span>
+                </span>
+            </div>
         </div>
-    </div>
+    {/if}
 
 </header>
 
@@ -63,6 +74,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        box-shadow: inset rgba(0,0,0,.2) 0px -80px 75px;
       }
       &__info {
         display: flex;
@@ -71,8 +83,21 @@
         margin-bottom: 50px;
         &--big {
           font-size: 3rem;
-          line-height: 0;
-          margin-bottom: 1rem;
+        }
+      }
+    }
+    .header_nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      .nav_right {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 18px;
+        a {
+          color: var(--color-text-1);
         }
       }
     }

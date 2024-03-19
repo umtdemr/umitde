@@ -1,10 +1,15 @@
 <script>
+	import { page } from "$app/stores";
 	import Header from '$lib/components/Header.svelte'
+	import './../_reset.scss';
 	import './../styles.scss';
+
+	let showBg;
+	$: showBg = $page.url.pathname === "/";
 </script>
 
 <div class="app">
-	<Header />
+	<Header showBg={showBg} />
 
 	<main>
 		<div class="container">
