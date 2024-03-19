@@ -1,0 +1,41 @@
+:root {
+  --color-dark-1: #202124;
+  --color-dark-2: #303239;
+  --color-blue: #4C67B7;
+  --color-text-1: #E4E4E7;
+  --color-text-2: #C1C1C1;
+  --color-link: #8ab4f8;
+}
+
+@font-face {
+  font-family: 'Be Vietnam';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Be Vietnam'), local('Be-Vietnam'), url('./fonts/BeVietnam-Regular.ttf');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Be Vietnam", sans-serif;
+  &.dark {
+    background-color: var(--color-dark-1);
+    color: var(--color-text-2);
+    a {
+      color: var(--color-link);
+    }
+  }
+}
+
+.container {
+  width: 760px;
+  margin: 0 auto;
+}
