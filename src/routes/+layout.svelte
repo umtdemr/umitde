@@ -3,6 +3,7 @@
 	import Header from '$lib/components/Header.svelte'
 	import './../_reset.scss';
 	import './../styles.scss';
+	import Logo from "$lib/components/Logo.svelte";
 
 	let showBg;
 	$: showBg = $page.url.pathname === "/";
@@ -18,11 +19,15 @@
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<div class="container">
+			<div class="footer__wrapper">
+				<Logo />
+			</div>
+		</div>
 	</footer>
 </div>
 
-<style>
+<style lang="scss">
 	.app {
 		display: flex;
 		flex-direction: column;
@@ -34,20 +39,13 @@
 	}
 
 	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
+		border-top: 3px solid #302D2D;
+		.footer__wrapper {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: 50px 0;
 		}
 	}
+
 </style>
