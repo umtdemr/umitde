@@ -1,10 +1,20 @@
 <script>
     import { page } from '$app/stores';
+    import { createEventDispatcher } from 'svelte';
     import Logo from '$lib/components/Logo.svelte'
     import HeaderBgImg from '$lib/images/header_bg.jpeg'
     import SearchIcon from '$lib/components/icons/SearchIcon.svelte'
 
+    const dispatch = createEventDispatcher();
+
     export let showBg = false;
+
+    function handleSearchIconClick(e) {
+        e?.preventDefault();
+        dispatch('changeSearchModalStatus', {
+            status: true
+        });
+    }
 </script>
 
 
@@ -18,7 +28,7 @@
                 <div class="nav_right">
                     <a href="/about" aria-current={$page.url.pathname === "/about" ? 'page' : undefined}>About</a>
                     <a href="/portfolio" aria-current={$page.url.pathname === "/portfolio" ? 'page' : undefined}>Portfolio</a>
-                    <a href="#"><SearchIcon /></a>
+                    <a href="#" on:click={handleSearchIconClick}><SearchIcon /></a>
                 </div>
             </nav>
         </div>

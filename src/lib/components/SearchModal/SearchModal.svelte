@@ -1,9 +1,16 @@
-<div class="backdrop">
-    <div
-        role="alertdialog"
-        aria-modal="true"
-        aria-label="Search"
-        aria-describedby="Search in Ümit Demir's blog posts">
-        
-    </div>
-</div>
+<script>
+    import { createEventDispatcher} from "svelte";
+    import Modal from "$lib/components/Modal/Modal.svelte";
+
+    const dispatch = createEventDispatcher();
+
+    function handleCloseModal() {
+        dispatch("changeSearchModalStatus", {
+            status: false
+        })
+    }
+</script>
+
+<Modal on:closeModal={handleCloseModal}>
+    Search modal
+</Modal>
