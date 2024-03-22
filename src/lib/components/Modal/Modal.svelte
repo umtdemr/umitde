@@ -1,7 +1,7 @@
 <script>
     import { fade } from 'svelte/transition';
     import { bounceIn } from "svelte/easing";
-    import { createEventDispatcher } from "svelte";
+    import {createEventDispatcher, onDestroy, onMount} from "svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -9,14 +9,26 @@
         dispatch('closeModal');
     }
 
+    onMount(() => {
+        document.querySelector("body").classList.add("modal--opened")
+    })
+
+    onDestroy(() => {
+        document.querySelector("body").classList.remove("modal--opened")
+    })
+
 </script>
 <div
-    class="modal__backdrop"
-    on:click={handleModalClose}
+    class="modal"
     transition:fade={{ duration: 100 }}>
     <div
+            class="modal__backdrop"
+            on:click={handleModalClose}
             role="alertdialog"
             aria-modal="true">
+    </div>
+    <div
+        class="modal__content">
         <slot></slot>
     </div>
 </div>

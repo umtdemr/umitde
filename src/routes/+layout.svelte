@@ -43,7 +43,7 @@
 			</div>
 		</div>
 	</footer>
-	{#if true}
+	{#if isSearchModalActive}
 		<SearchModal  on:changeSearchModalStatus={handleChangeSearchModalStatus} />
 	{/if}
 </div>

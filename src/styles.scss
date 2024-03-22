@@ -35,6 +35,9 @@ body {
       text-decoration: none;
     }
   }
+  &.modal--opened {
+    overflow: hidden;
+  }
 }
 
 .container {
