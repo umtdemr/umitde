@@ -55,3 +55,19 @@ body {
   font-size: 1.5rem;
   line-height: 2rem;
 }
+
+.portfolio_tags {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  margin-top: 10px;
+  .tag_item {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--color-text-1);
+    &.purple {
+      background-color: #4F55ED;
+    }
+  }
+}
