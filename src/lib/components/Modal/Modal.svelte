@@ -35,15 +35,19 @@
 
 
 <style lang="scss">
+  @mixin modalBg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+  }
     .modal {
+      @include modalBg;
       &__backdrop {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        left: 0;
-        top: 0;
+        @include modalBg;
         background-color: rgba(0, 0, 0, .68);
-        z-index: 99;
         backdrop-filter: blur(20px);
       }
     }
