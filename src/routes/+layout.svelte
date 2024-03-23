@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div class="app">
+<div class="app" class:notHome={!showBg}>
 	<Header showBg={showBg} on:changeSearchModalStatus={handleChangeSearchModalStatus} />
 
 	<main>
@@ -54,6 +54,9 @@
 		flex-direction: column;
 		min-height: 100vh;
 		justify-content: space-between;
+		&.notHome {
+			background: linear-gradient(180deg, var(--color-blue) -340px, #202124 100px);
+		}
 	}
 
 	main {
