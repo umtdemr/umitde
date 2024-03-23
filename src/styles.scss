@@ -45,3 +45,13 @@ body {
   width: 760px;
   margin: 0 auto;
 }
+
+.section_title {
+  font-size: 3rem;
+  color: var(--color-text-1);
+}
+.section_desc {
+  margin-top: 16px;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}

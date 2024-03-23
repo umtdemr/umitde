@@ -5,7 +5,7 @@
 
 <section class="about">
 	<h1 class="section_title">About</h1>
-	<p class="about__content">
+	<p class="section_desc">
 		Lorem ipsum dolor sit amet consectetur. Fringilla eget imperdiet quis ullamcorper egestas. Potenti nibh orci pretium euismod tortor ipsum. Malesuada dolor id scelerisque viverra eleifend magna hendrerit viverra faucibus. Quis massa amet purus sit diam neque eleifend lectus iaculis.
 		Non dictum auctor proin tortor diam id mauris urna. Vel commodo eget aliquam ut ultrices diam nunc. Viverra orci fermentum neque egestas morbi. Non amet nulla cras mauris nisi amet sit eleifend viverra. Faucibus sed sit tristique orci morbi. Nunc eget consequat in arcu cras potenti dui. Senectus habitant viverra enim enim mi in. Risus id elementum tellus diam id faucibus nulla non. Dignissim dictum amet faucibus tincidunt id nullam. Sed at habitant arcu interdum in. Commodo feugiat volutpat ultrices sed rhoncus sed gravida. In sit nulla fusce nisi pellentesque ultrices. Rhoncus risus varius amet tristique arcu consequat vestibulum sagittis imperdiet. Tincidunt id elit odio eget sit eget.
 	</p>
@@ -70,17 +70,6 @@
 
 
 <style lang="scss">
-	.section_title {
-		font-size: 3rem;
-		color: var(--color-text-1);
-	}
-	.about {
-		&__content {
-			margin-top: 16px;
-			font-size: 1.5rem;
-			line-height: 2rem;
-		}
-	}
 	.journey {
 		margin-top: 75px;
 		padding-bottom: 50px;
