@@ -9,12 +9,24 @@
         dispatch('closeModal');
     }
 
+    function handleKeydown(e) {
+        // handle escape key only
+        if (e.keyCode !== 27) return;
+
+        // the first keydown for esc clears the content
+        if (e?.target && e?.target?.value?.length > 0) return;
+
+        handleModalClose()
+    }
+
     onMount(() => {
         document.querySelector("body").classList.add("modal--opened")
+        document.addEventListener('keydown', handleKeydown)
     })
 
     onDestroy(() => {
         document.querySelector("body").classList.remove("modal--opened")
+        document.removeEventListener('keydown', handleKeydown)
     })
 
 </script>

@@ -1,15 +1,22 @@
 <script>
-    import { createEventDispatcher} from "svelte";
+    import {createEventDispatcher, onMount} from "svelte";
     import Modal from "$lib/components/Modal/Modal.svelte";
     import SearchIcon from "$lib/components/icons/SearchIcon.svelte";
 
     const dispatch = createEventDispatcher();
+
+    /** @type {HTMLInputElement} */
+    let inputEl;
 
     function handleCloseModal() {
         dispatch("changeSearchModalStatus", {
             status: false
         })
     }
+
+    onMount(() => {
+        inputEl.focus();
+    })
 </script>
 
 <Modal on:closeModal={handleCloseModal}>
@@ -22,7 +29,8 @@
         </a>
         <input
             type="search"
-            placeholder="Search in blog" />
+            placeholder="Search in blog"
+            bind:this={inputEl}/>
 
     </div>
 </Modal>
