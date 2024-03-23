@@ -1,3 +1,7 @@
+<script>
+    import PostFeatureMockImg from '$lib/images/post_mockup_featured_image.png';
+</script>
+
 <svelte:head>
     <title>Portfolio</title>
 </svelte:head>
@@ -7,14 +11,7 @@
     <p class="section_desc">Lorem ipsum dolar sit amöet</p>
     <div class="portfolio_list">
         <div class="portfolio_item">
-            <div class="portfolio_item__img" ></div> <!-- TODO: REPLACE WITH IMAGE TAG -->
-            <h3 class="portfolio_item__title">Mimic Robot</h3>
-            <div class="portfolio_tags">
-                <div class="tag_item purple">robotics</div>
-            </div>
-        </div>
-        <div class="portfolio_item">
-            <div class="portfolio_item__img" ></div> <!-- TODO: REPLACE WITH IMAGE TAG -->
+            <img src={PostFeatureMockImg} class="portfolio_item__img" />
             <h3 class="portfolio_item__title">Mimic Robot</h3>
             <div class="portfolio_tags">
                 <div class="tag_item purple">robotics</div>
@@ -46,6 +43,9 @@
         height: 100%;
         background-color: var(--color-modal-dark-bg);
         border-radius: 33px;
+        object-fit: cover;
+        filter: brightness(50%);
+        user-select: none;
       }
       &__title {
         color: var(--color-text-1);
