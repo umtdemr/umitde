@@ -19,7 +19,7 @@
 
 
 <header>
-    <div class="header_wrapper absolute">
+    <div class="header_wrapper" class:absolute={showBg}>
         <div class="container">
             <nav class="header_nav">
                 <div class="nav_left">
