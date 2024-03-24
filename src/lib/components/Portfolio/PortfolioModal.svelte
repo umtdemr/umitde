@@ -32,8 +32,8 @@
 
 <style lang="scss">
     .portfolio_modal {
-      width: 760px;
-      height: 760px;
+      width: 1095px;
+      height: 607.5px;
       z-index: 999999;
       position: absolute;
       left: 50%;
@@ -42,7 +42,7 @@
       border-radius: 33px;
       background-color: var(--color-modal-dark-bg);
       display: grid;
-      grid-template-columns: 380px 380px;
+      grid-template-columns: 547.5px 547.5px;
       &__img {
         img {
           width: 100%;
