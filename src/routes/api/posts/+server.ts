@@ -9,21 +9,24 @@ async function getPosts() {
 
     for (const path in paths) {
         const file = paths[path];
-        if (file && typeof file === 'object' && 'metadata' in file) {
-            const metadata = file.metadata as Post;
-            if (metadata.published) {
-                const postDate = new Date(metadata.date);
-                metadata.date = postDate.toISOString()
-                const strDateOptions: Intl.DateTimeFormatOptions = {
-                    month: 'short',
-                    year: 'numeric',
-                    day: '2-digit'
-                }
-                metadata.strDate = postDate.toLocaleDateString('en-US', strDateOptions)
-                const postPath = path.substring(0, path.lastIndexOf('/'))
-                posts.push({...metadata, path: postPath });
-            }
+        if (!file || typeof file !== 'object'|| !('metadata' in file)) {
+            continue;
         }
+        const metadata = file.metadata as Post;
+        if (!metadata.published) {
+            continue;
+        }
+
+        const postDate = new Date(metadata.date);
+        metadata.date = postDate.toISOString()
+        const strDateOptions: Intl.DateTimeFormatOptions = {
+            month: 'short',
+            year: 'numeric',
+            day: '2-digit'
+        }
+        metadata.strDate = postDate.toLocaleDateString('en-US', strDateOptions)
+        const postPath = path.substring(0, path.lastIndexOf('/'))
+        posts.push({...metadata, path: postPath });
     }
 
     posts.sort(
