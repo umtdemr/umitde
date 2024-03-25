@@ -4,7 +4,11 @@
 
 <article class="post_item">
     <a href={`/blog/${post.slug}`}>
-        <img src={post.path + '/' + post.image} alt="post image" />
+        <img
+            src={`/content/blog/${post.slug}/${post.image}`}
+            width="760"
+            height="367"
+            alt="post image" />
         <h2 class="post_item__title">{post.title}</h2>
         <footer class="post_item__footer">
            <time class="post_item__footer--date" datetime={post.date}>{post.strDate}</time>
