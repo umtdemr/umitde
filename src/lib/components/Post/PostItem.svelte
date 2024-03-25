@@ -1,13 +1,13 @@
 <script>
-   import PostFeatureMockImg from '$lib/images/post_mockup_featured_image.png';
+   export let post;
 </script>
 
 <article class="post_item">
-    <a href="#">
-        <img src={PostFeatureMockImg} alt="post image" />
-        <h2 class="post_item__title">My new website</h2>
+    <a href={`/blog/${post.slug}`}>
+        <img src={post.path + '/' + post.image} alt="post image" />
+        <h2 class="post_item__title">{post.title}</h2>
         <footer class="post_item__footer">
-           <time class="post_item__footer--date" datetime="2024-03-21">March 21, 2024</time>
+           <time class="post_item__footer--date" datetime={post.date}>{post.strDate}</time>
         </footer>
     </a>
 </article>

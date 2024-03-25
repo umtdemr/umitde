@@ -3,6 +3,8 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 	import PostList from "$lib/components/Post/PostList.svelte";
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -11,7 +13,7 @@
 </svelte:head>
 
 <section>
-	<PostList />
+	<PostList data={data} />
 </section>
 
 <style lang="scss">
