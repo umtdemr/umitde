@@ -2,7 +2,7 @@
 import ProfileImg from "$lib/images/umit-demir.jpeg";
 </script>
 
-<a href="/" class="logo" tabindex="2">
+<a href="/" class="logo">
     <img src={ProfileImg} alt="ümit demir's selfie photo" />
     Ümit Demir
 </a>
