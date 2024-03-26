@@ -1,3 +1,8 @@
+<script>
+	import JourneyJson from './journey.json';
+	console.log(JourneyJson)
+</script>
+
 <svelte:head>
 	<title>About</title>
 	<meta name="description" content="About this app" />
@@ -26,58 +31,28 @@
 <section class="journey">
 	<h1 class="section_title">Journey</h1>
 	<div class="journey_list">
-		<div class="journey__content">
-			<span class="journey__content--year">2023</span>
-			<div class="journey__content--list">
-				<div class="journey__item">
-				<span class="journey__item--step">
-					<span class="step_circle">
-						<span class="step_circle_inner">
-						</span>
-					</span>
-					<span class="step_stick"></span>
-				</span>
-					<span class="journey__item--title">Working on there</span>
-					<p class="journey__item--info">Lorem ipsum dolor sit amet consectetur. Fringilla eget imperdiet quis ullamcorper egestas. Potenti nibh orci pretium euismod tortor ipsum. Malesuada dolor id scelerisque viverra eleifend magna hendrerit viverra faucibus. Quis massa amet purus sit diam neque eleifend lectus iaculis.</p>
-				</div>
-				<div class="journey__item">
-				<span class="journey__item--step">
-					<span class="step_circle">
-						<span class="step_circle_inner">
-						</span>
-					</span>
-				</span>
-					<span class="journey__item--title">Working on there</span>
-					<p class="journey__item--info">Lorem ipsum dolor sit amet consectetur. Fringilla eget imperdiet quis ullamcorper egestas. Potenti nibh orci pretium euismod tortor ipsum. Malesuada dolor id scelerisque viverra eleifend magna hendrerit viverra faucibus. Quis massa amet purus sit diam neque eleifend lectus iaculis.</p>
+		{#each  JourneyJson.data as journeyData}
+			<div class="journey__content">
+				<span class="journey__content--year">{journeyData.year}</span>
+				<div class="journey__content--list">
+					{#each journeyData.content as journeyContent, index}
+						<div class="journey__item">
+							<span class="journey__item--step">
+								<span class="step_circle">
+									<span class="step_circle_inner">
+									</span>
+								</span>
+								{#if index < journeyData.content.length - 1}
+									<span class="step_stick"></span>
+								{/if}
+							</span>
+							<span class="journey__item--title">{journeyContent.title}</span>
+							<p class="journey__item--info">{journeyContent.desc}</p>
+						</div>
+					{/each}
 				</div>
 			</div>
-		</div>
-		<div class="journey__content">
-			<span class="journey__content--year">2022</span>
-			<div class="journey__content--list">
-				<div class="journey__item">
-				<span class="journey__item--step">
-					<span class="step_circle">
-						<span class="step_circle_inner">
-						</span>
-					</span>
-					<span class="step_stick"></span>
-				</span>
-					<span class="journey__item--title">Working on there</span>
-					<p class="journey__item--info">Lorem ipsum dolor sit amet consectetur. Fringilla eget imperdiet quis ullamcorper egestas. Potenti nibh orci pretium euismod tortor ipsum. Malesuada dolor id scelerisque viverra eleifend magna hendrerit viverra faucibus. Quis massa amet purus sit diam neque eleifend lectus iaculis.</p>
-				</div>
-				<div class="journey__item">
-				<span class="journey__item--step">
-					<span class="step_circle">
-						<span class="step_circle_inner">
-						</span>
-					</span>
-				</span>
-					<span class="journey__item--title">Working on there</span>
-					<p class="journey__item--info">Lorem ipsum dolor sit amet consectetur. Fringilla eget imperdiet quis ullamcorper egestas. Potenti nibh orci pretium euismod tortor ipsum. Malesuada dolor id scelerisque viverra eleifend magna hendrerit viverra faucibus. Quis massa amet purus sit diam neque eleifend lectus iaculis.</p>
-				</div>
-			</div>
-		</div>
+		{/each}
 	</div>
 </section>
 
