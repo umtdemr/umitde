@@ -4,12 +4,8 @@
       "year": "2023",
       "content": [
         {
-          "title": "Working on there",
-          "desc": "Lorem ipsum dolor sit amet consectetur. Fringilla eget imperdiet quis ullamcorper egestas. Potenti nibh orci pretium euismod tortor ipsum. Malesuada dolor id scelerisque viverra eleifend magna hendrerit viverra faucibus. Quis massa amet purus sit diam neque eleifend lectus iaculis."
-        },
-        {
-          "title": "Working on there",
-          "desc": "Lorem ipsum dolor sit amet consectetur. Fringilla eget imperdiet quis ullamcorper egestas. Potenti nibh orci pretium euismod tortor ipsum. Malesuada dolor id scelerisque viverra eleifend magna hendrerit viverra faucibus. Quis massa amet purus sit diam neque eleifend lectus iaculis."
+          "title": "Graduated from the University",
+          "desc": "On June 2023, I graduated from the Duzce University. It was a great experience for me. I've worked on couple of projects in the University and tried different technologies."
         }
       ]
     },
@@ -17,12 +13,48 @@
       "year": "2022",
       "content": [
         {
-          "title": "Working on there",
-          "desc": "Lorem ipsum dolor sit amet consectetur. Fringilla eget imperdiet quis ullamcorper egestas. Potenti nibh orci pretium euismod tortor ipsum. Malesuada dolor id scelerisque viverra eleifend magna hendrerit viverra faucibus. Quis massa amet purus sit diam neque eleifend lectus iaculis."
+          "title": "Joined Cressoft",
+          "desc": "Since I'd finished all of my classes, I was able to work full time. Thanks to that, I started working with Cressfot Consultancy on July 2022."
+        }
+      ]
+    },
+    {
+      "year": "2019",
+      "content": [
+        {
+          "title": "Started working part-time",
+          "desc": "I started working as a part-time full stack developer at a digital agency. We mainly used python/django, wordpress, react and docker for our web apps. At this time, I started working in linux since our servers were in linux. Because of that, I got used to vim. Now I'm using vim in all of my editors."
+        }
+      ]
+    },
+    {
+      "year": "2018",
+      "content": [
+        {
+          "title": "Started at Duzce University",
+          "desc": "I moved to Duzce from Istanbul because of the University. I was so happy."
+        }
+      ]
+    },
+    {
+      "year": "2016",
+      "content": [
+        {
+          "title": "Maker Projects",
+          "desc": "I worked on some projects for my high school. I mainly used C# with image processing for the projects. I worked on a gesture robot that imitates your gestures, a mirror that takes a photo when you smile, an autonomous car prototype (super basic) and an app that aims to teach shapes and colors to the children."
         },
         {
-          "title": "Working on there",
-          "desc": "Lorem ipsum dolor sit amet consectetur. Fringilla eget imperdiet quis ullamcorper egestas. Potenti nibh orci pretium euismod tortor ipsum. Malesuada dolor id scelerisque viverra eleifend magna hendrerit viverra faucibus. Quis massa amet purus sit diam neque eleifend lectus iaculis."
+          "title": "Internship in high school",
+          "desc": "I've worked for a year as a web developer intern at a digital agency."
+        }
+      ]
+    },
+    {
+      "year": "2000",
+      "content": [
+        {
+          "title": "Born",
+          "desc": "I was born on April 4, 2000"
         }
       ]
     }
