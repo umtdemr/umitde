@@ -61,7 +61,7 @@
 
 	main {
 		flex-grow: 1;
-		padding-top: 100px;
+		padding: 100px 0;
 	}
 
 	footer {
@@ -70,7 +70,7 @@
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
-			padding: 50px 0;
+			padding: 30px 0;
 		}
 		.footer__socials {
 			display: flex;
