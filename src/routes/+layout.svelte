@@ -34,10 +34,10 @@
 			<div class="footer__wrapper">
 				<Logo />
 				<div class="footer__socials">
-					<a href="https://www.linkedin.com/in/umtdemr/" target="_blank" rel="noopener noreferrer">
+					<a href="https://www.linkedin.com/in/umtdemr/" target="_blank" rel="noopener noreferrer" aria-label="Ümit Demir's Linkedin Profile">
 						<LinkedinIcon />
 					</a>
-					<a href="https://github.com/umtdemr" target="_blank" rel="noopener noreferrer">
+					<a href="https://github.com/umtdemr" target="_blank" rel="noopener noreferrer" aria-label="Ümit Demir's Github Profile">
 						<GithubIcon />
 					</a>
 				</div>

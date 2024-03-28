@@ -30,7 +30,7 @@
                 <div class="nav_right">
                     <a href="/about" aria-current={$page.url.pathname === "/about" ? 'page' : undefined}>About</a>
                     <a href="/portfolio" aria-current={$page.url.pathname === "/portfolio" ? 'page' : undefined}>Portfolio</a>
-                    <a href="#" on:click={handleSearchIconClick}><SearchIcon /></a>
+                    <a href="#" on:click={handleSearchIconClick} aria-label="Search"><SearchIcon /></a>
                 </div>
             </nav>
         </div>
