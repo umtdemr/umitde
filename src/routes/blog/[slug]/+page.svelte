@@ -1,15 +1,12 @@
 <script>
     import PostFeatureMockImg from '$lib/images/post_mockup_featured_image.png';
+    import PostImage from "$lib/components/Post/PostImage.svelte";
 
     export let data;
 </script>
 <article class="post">
     <div class="post__header">
-        <img
-            src={`/content/blog/${data.metadata.slug}/${data.metadata.image}`}
-            width="760"
-            height="367"
-            alt="post" />
+        <PostImage data={data.metadata} />
         <h2>{data.metadata.title}</h2>
         <time class="post_item__footer--date" datetime={data.metadata.date}>{data.metadata.date}</time>
     </div>

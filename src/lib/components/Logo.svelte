@@ -1,9 +1,19 @@
 <script>
-import ProfileImg from "$lib/images/umit-demir.jpeg?w=34&h=34&format=webp";
+import ProfileImgAvif from "$lib/images/umit-demir.jpeg?w=34&h=34&format=avif";
+import ProfileImgWebp from "$lib/images/umit-demir.jpeg?w=34&h=34&format=webp";
+import { src, width, height} from "$lib/images/umit-demir.jpeg?w=34&h=34&as=metadata";
 </script>
 
 <a href="/" class="logo">
-    <img src={ProfileImg} alt="ümit demir's selfie photo" />
+    <picture>
+        <source srcset={ProfileImgAvif} type="image/avif" />
+        <source srcset={ProfileImgWebp} type="image/webp" />
+        <img
+            src={src}
+            width={width}
+            height={height}
+            alt="ümit demir's selfie photo" />
+    </picture>
     Ümit Demir
 </a>
 

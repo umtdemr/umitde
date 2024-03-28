@@ -1,14 +1,12 @@
 <script>
+   import PostImage from "$lib/components/Post/PostImage.svelte";
+
    export let post;
 </script>
 
 <article class="post_item">
     <a href={`/blog/${post.slug}`}>
-        <img
-            src={`/content/blog/${post.slug}/${post.image}`}
-            width="760"
-            height="367"
-            alt="post image" />
+        <PostImage data={post} />
         <h2 class="post_item__title">{post.title}</h2>
         <footer class="post_item__footer">
            <time class="post_item__footer--date" datetime={post.date}>{post.strDate}</time>
