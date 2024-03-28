@@ -6,7 +6,7 @@
 
 <article class="post_item">
     <a href={`/blog/${post.slug}`}>
-        <PostImage data={post} />
+        <PostImage data={post.imageData} />
         <h2 class="post_item__title">{post.title}</h2>
         <footer class="post_item__footer">
            <time class="post_item__footer--date" datetime={post.date}>{post.strDate}</time>

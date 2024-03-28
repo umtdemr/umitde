@@ -6,7 +6,7 @@
 </script>
 <article class="post">
     <div class="post__header">
-        <PostImage data={data.metadata} />
+        <PostImage data={data.metadata.imageData} />
         <h2>{data.metadata.title}</h2>
         <time class="post_item__footer--date" datetime={data.metadata.date}>{data.metadata.date}</time>
     </div>

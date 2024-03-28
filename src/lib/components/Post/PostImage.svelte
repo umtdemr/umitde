@@ -2,8 +2,16 @@
     export let data;
 </script>
 
-<img
-src={`/content/blog/${data.slug}/${data.image}`}
-width="760"
-height="367"
-alt="post image" />
+<picture>
+    {#each data.sources as source}
+        <source srcset={source.srcset} type={source.type} />
+    {/each}
+    <img
+            alt="post image"
+            class="lazy"
+            decoding="async"
+            width="760"
+            height="367"
+            src={data.src}
+    />
+</picture>
