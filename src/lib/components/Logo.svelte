@@ -1,5 +1,5 @@
 <script>
-import ProfileImg from "$lib/images/umit-demir.jpeg";
+import ProfileImg from "$lib/images/umit-demir.jpeg?w=34&h=34&format=webp";
 </script>
 
 <a href="/" class="logo">
