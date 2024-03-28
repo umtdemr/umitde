@@ -2,7 +2,9 @@
     import { page } from '$app/stores';
     import { createEventDispatcher } from 'svelte';
     import Logo from '$lib/components/Logo.svelte'
-    import HeaderBgImg from '$lib/images/header_bg.jpeg'
+    import { src, width, height } from '$lib/images/header_bg.jpeg?as=metadata'
+    import HeaderBgImgAvif from '$lib/images/header_bg.jpeg?format=avif'
+    import HeaderBgImgWebp from '$lib/images/header_bg.jpeg?format=webp'
     import SearchIcon from '$lib/components/icons/SearchIcon.svelte'
 
     const dispatch = createEventDispatcher();
@@ -35,7 +37,16 @@
     </div>
     {#if showBg}
         <div class="header_bg__wrapper">
-            <img class="header_bg" src={HeaderBgImg} alt="a house view from Istanbul / Adalar (Kınalı ada)" />
+            <picture>
+                <source srcset={HeaderBgImgAvif} type="image/avif" />
+                <source srcset={HeaderBgImgWebp} type="image/webp" />
+                <img
+                    class="header_bg"
+                    src={src}
+                    width={width}
+                    height={height}
+                    alt="a house view from Istanbul / Adalar (Kınalı ada)" />
+            </picture>
             <div class="container">
                 <span class="header_bg__info">
                     <span class="header_bg__info--big">Hi, this is Ümit</span>
