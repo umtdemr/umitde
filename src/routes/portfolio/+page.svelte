@@ -1,6 +1,6 @@
 <script>
-    import PostFeatureMockImg from '$lib/images/post_mockup_featured_image.png';
     import PortfolioItem from "$lib/components/Portfolio/PortfolioItem.svelte";
+    import data from './portfolioData.json';
 </script>
 
 <svelte:head>
@@ -8,10 +8,12 @@
 </svelte:head>
 
 <section class="portfolio">
-    <h2 class="section_title">Portfolio</h2>
+    <h2 class="section_title">Works</h2>
     <p class="section_desc">Lorem ipsum dolar sit amöet</p>
     <div class="portfolio_list">
-        <PortfolioItem />
+        {#each data.items as workItem}
+            <PortfolioItem data={workItem} />
+        {/each}
     </div>
 </section>
 

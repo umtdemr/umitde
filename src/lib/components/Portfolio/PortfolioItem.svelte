@@ -1,8 +1,10 @@
 <script>
-    import PostFeatureMockImg from "$lib/images/post_mockup_featured_image.png";
+    import Image from "$lib/assets/works/hierapi.jpg";
     import PortfolioModal from "$lib/components/Portfolio/PortfolioModal.svelte";
 
     let showModal = false;
+
+    export let data;
 
     function handleClick() {
        showModal = true;
@@ -20,15 +22,19 @@
     role="button"
     on:click={handleClick}
     >
-    <img src={PostFeatureMockImg} class="portfolio_item__img" alt="portfolio img"/>
-    <h3 class="portfolio_item__title" id="item_title_1">Mimic Robot</h3>
+    <img src={Image} class="portfolio_item__img" alt="portfolio img"/>
+    <h3 class="portfolio_item__title" id="item_title_1">{data.title}</h3>
     <div class="portfolio_tags">
-        <div class="tag_item purple">robotics</div>
+        {#each data.tags as tag}
+            <div class="tag_item purple">{tag}</div>
+        {/each}
     </div>
 </div>
 
 {#if showModal}
-    <PortfolioModal on:changePortfolioModalStatus={handleModalChangeStatus} />
+    <PortfolioModal
+        on:changePortfolioModalStatus={handleModalChangeStatus}
+        data={data} />
 {/if}
 
 

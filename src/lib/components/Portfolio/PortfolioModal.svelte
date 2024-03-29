@@ -1,7 +1,9 @@
 <script>
     import {createEventDispatcher} from "svelte";
     import Modal from "$lib/components/Modal/Modal.svelte";
-    import PostFeatureMockImg from '$lib/images/post_mockup_featured_image.png';
+    import Image from "$lib/assets/works/hierapi.jpg";
+
+    export let data;
 
     const dispatch = createEventDispatcher();
 
@@ -15,16 +17,17 @@
 <Modal on:closeModal={handleCloseModal}>
     <div class="portfolio_modal">
         <div class="portfolio_modal__img">
-            <img class="portfolio_modal__img" src={PostFeatureMockImg} alt="mimic" />
+            <img class="portfolio_modal__img" src={Image} alt="mimic" />
         </div>
         <div class="portfolio_modal__info">
-            <h2 class="portfolio_modal__info--title">Mimic Robot</h2>
+            <h2 class="portfolio_modal__info--title">{data.title}</h2>
             <div class="portfolio_tags">
-                <div class="tag_item purple">robotics</div>
+                {#each data.tags as tag}
+                    <div class="tag_item purple">{tag}</div>
+                {/each}
             </div>
             <p class="portfolio_modal__info--content">
-                Lorem ipsum dolor sit amet consectetur. Venenatis imperdiet neque lectus sapien morbi mattis massa viverra molestie. Tristique integer gravida ut ullamcorper ac tincidunt sit nulla varius. Id ultrices facilisi amet tempor. Eu non ultrices tortor vel. Volutpat facilisis risus leo varius egestas. At nam ut congue dictum vitae lobortis varius pulvinar. Ut id odio massa suscipit integer malesuada lectus. Sit nulla etiam aenean ut. Cursus ornare ornare eget interdum in leo.
-                Mauris auctor lacinia blandit lacinia fringilla mauris pharetra. Sed purus proin feugiat duis nulla dui. Quam tellus suspendisse neque enim quis nullam tortor. Non sed dictumst nulla pulvinar placerat tortor tincidunt nunc. Egestas non dictum adipiscing lacus mi. Aliquam sit dictumst sed porttitor volutpat ornare et. Orci rhoncus suscipit pharetra id.
+                {data.description}
             </p>
         </div>
     </div>
