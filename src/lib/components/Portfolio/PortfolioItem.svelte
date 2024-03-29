@@ -22,7 +22,7 @@
     role="button"
     on:click={handleClick}
     >
-    <img src={Image} class="portfolio_item__img" alt="portfolio img"/>
+    <img src={data.images[0].imageData.src} class="portfolio_item__img" alt="portfolio img"/>
     <h3 class="portfolio_item__title" id="item_title_1">{data.title}</h3>
     <div class="portfolio_tags">
         {#each data.tags as tag}

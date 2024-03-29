@@ -7,7 +7,8 @@
       "images": [
         {
           "url": "hierapi.jpg",
-          "alt": "Hierapi, an e-commerce app"
+          "alt": "Hierapi, an e-commerce app",
+          "slug": "hierapi"
         }
       ]
     },
@@ -18,7 +19,8 @@
       "images": [
         {
           "url": "apeiros.jpg",
-          "alt": "Apeiros"
+          "alt": "Apeiros",
+          "slug": "apeiros"
         }
       ]
     }

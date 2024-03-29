@@ -4,19 +4,28 @@ import path from 'path';
 import {makeDirectory} from "./src/lib/utils/file.js";
 import {metadata, dominantColour, lowResolutionPlaceholder} from "./src/lib/utils/image.js";
 const BLOG_PATH = 'src/posts'
+const PORTFOLIO_PATH = 'src/routes/portfolio/portfolioData.json';
 
 const __dirname = path.resolve();
 const formats = ['avif', 'webp', 'auto'];
 const sizes = [760];
+const portfolioSizes = [548];
 const densities = [1.0];
 const maxWidth = sizes[sizes.length - 1];
+const maxPortfolioImageWidth = sizes[sizes.length - 1];
 
 // use sizes and densities arrays to determine the actual output widths needed
 const outputSizes = [];
+const portfolioOutputSizes = [];
 sizes.forEach((sizesElement) => {
     densities.forEach((densitiesElement) => outputSizes.push(densitiesElement * sizesElement));
 });
 outputSizes.sort((a, b) => b - a);
+
+portfolioSizes.forEach((sizesElement) => {
+    densities.forEach((densitiesElement) => portfolioOutputSizes.push(densitiesElement * sizesElement));
+});
+portfolioOutputSizes.sort((a, b) => b - a);
 
 async function generateImageMeta(source) {
     const metaPromises = [
@@ -59,7 +68,7 @@ async function getPostImages(location) {
     return images;
 }
 
-async function main() {
+async function generatePostImages() {
     const location = path.join(__dirname, BLOG_PATH);
     const postImages = await getPostImages(location);
 
@@ -120,4 +129,74 @@ export { data as default };
 
 }
 
-main()
+async function generatePortfolioImages() {
+    const location = path.join(__dirname, PORTFOLIO_PATH);
+    const file = fs.readFileSync(location, { encoding: 'utf-8' })
+    const data = JSON.parse(file);
+    const images = data.items.map(item => item.images).flat()
+
+    const imageMetaPromises = images.map(async (element) => {
+        const { url } = element;
+        const source = path.join(__dirname, 'src/lib/assets/works/', url);
+        return generateImageMeta(source);
+    });
+    const imageMetadata = await Promise.all(imageMetaPromises);
+
+    const imageGeneratedDir =  path.join(__dirname, 'src/lib/generated/works');
+    await makeDirectory(imageGeneratedDir);
+
+    images.forEach((portfolioImage, index) => {
+        const { url, slug, alt } = portfolioImage;
+        const { dominantColour, format, placeholder, width } = imageMetadata[index];
+        const postPath = path.join(imageGeneratedDir, `${slug}.ts`);
+
+        const source = `$lib/assets/works/${url}`
+        const srcsetImportArray = formats.map(
+            (formatsElement) =>
+                `import srcset${formatsElement} from '${source}?w=${
+                    width < portfolioOutputSizes[0] ? `${width};` : ''
+                }${portfolioOutputSizes
+                    .filter((outputSizesElement) => outputSizesElement <= width)
+                    .join(';')}&format=${formatsElement === 'auto' ? format : formatsElement}&as=srcset';`,
+        );
+        const sources = `[\n${formats
+            .map(
+                (formatsElement) =>
+                    `    { srcset: ${`srcset${formatsElement}`}, type: ${
+                        formatsElement === 'auto' ? `'image/${format}'` : `'image/${formatsElement}'`
+                    } },`,
+            )
+            .join('\n')}\n  ]`;
+        const result = `import meta from '${source}?w=${Math.min(
+            maxWidth,
+            width,
+        )}&as=meta:height;src;width';
+${srcsetImportArray.join('\n')}
+const { height, src, width } = meta;
+
+const data = {
+  slug: '${slug}',
+  width,
+  height,
+  alt: '${alt}',
+  src,
+  sources: ${sources},
+  dominantColour: '${dominantColour}',
+  placeholder:
+    '${placeholder}',
+};
+
+export { data as default };
+`;
+        fs.writeFileSync(postPath, result, 'utf-8');
+
+    });
+
+}
+
+async function main() {
+    const promises = [generatePortfolioImages()]
+    await Promise.allSettled(promises)
+}
+
+await main();

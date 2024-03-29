@@ -1,6 +1,7 @@
 <script>
     import PortfolioItem from "$lib/components/Portfolio/PortfolioItem.svelte";
-    import data from './portfolioData.json';
+
+    export let data;
 </script>
 
 <svelte:head>

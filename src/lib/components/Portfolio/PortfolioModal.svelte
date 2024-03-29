@@ -17,7 +17,7 @@
 <Modal on:closeModal={handleCloseModal}>
     <div class="portfolio_modal">
         <div class="portfolio_modal__img">
-            <img class="portfolio_modal__img" src={Image} alt="mimic" />
+            <img class="portfolio_modal__img" src={data.images[0].imageData.src} alt={data.images[0].imageData.src} />
         </div>
         <div class="portfolio_modal__info">
             <h2 class="portfolio_modal__info--title">{data.title}</h2>

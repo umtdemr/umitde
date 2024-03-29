@@ -1,7 +1,7 @@
-import meta from '$lib/assets/blog/first-post/post_mockup_featured_image.png?as=meta:height;src;width';
-import srcsetavif from '$lib/assets/blog/first-post/post_mockup_featured_image.png?format=avif&as=srcset';
-import srcsetwebp from '$lib/assets/blog/first-post/post_mockup_featured_image.png?format=webp&as=srcset';
-import srcsetauto from '$lib/assets/blog/first-post/post_mockup_featured_image.png?format=png&as=srcset';
+import meta from '$lib/assets/blog/first-post/post_mockup_featured_image.png?w=760&as=meta:height;src;width';
+import srcsetavif from '$lib/assets/blog/first-post/post_mockup_featured_image.png?w=760&format=avif&as=srcset';
+import srcsetwebp from '$lib/assets/blog/first-post/post_mockup_featured_image.png?w=760&format=webp&as=srcset';
+import srcsetauto from '$lib/assets/blog/first-post/post_mockup_featured_image.png?w=760&format=png&as=srcset';
 const { height, src, width } = meta;
 
 const data = {
