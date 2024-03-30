@@ -23,6 +23,23 @@
           "slug": "apeiros"
         }
       ]
+    },
+    {
+      "title": "Person Alarm",
+      "description": "Lorem ipsum dolor sit amet consectetur. Venenatis imperdiet neque lectus sapien morbi mattis massa viverra molestie. Tristique integer gravida ut ullamcorper ac tincidunt sit nulla varius. Id ultrices facilisi amet tempor. Eu non ultrices tortor vel. Volutpat facilisis risus leo varius egestas. At nam ut congue dictum vitae lobortis varius pulvinar. Ut id odio massa suscipit integer malesuada lectus. Sit nulla etiam aenean ut. Cursus ornare ornare eget interdum in leo.\n                Mauris auctor lacinia blandit lacinia fringilla mauris pharetra. Sed purus proin feugiat duis nulla dui. Quam tellus suspendisse neque enim quis nullam tortor. Non sed dictumst nulla pulvinar placerat tortor tincidunt nunc. Egestas non dictum adipiscing lacus mi. Aliquam sit dictumst sed porttitor volutpat ornare et. Orci rhoncus suscipit pharetra id.",
+      "tags": ["embedded systems", "django", "c++"],
+      "images": [
+        {
+          "url": "person-alarm.jpeg",
+          "alt": "Person Alarm",
+          "slug": "person-alarm"
+        },
+        {
+          "url": "person-alarm2.jpg",
+          "alt": "Person Alarm",
+          "slug": "person-alarm2"
+        }
+      ]
     }
   ]
 }
