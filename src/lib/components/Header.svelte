@@ -22,7 +22,7 @@
 
 <header>
     <div class="header_wrapper" class:absolute={showBg}>
-        <div class="container">
+        <div class="container nav_container">
             <nav class="header_nav">
                 <div class="nav_left">
                    <Logo />
@@ -121,6 +121,19 @@
         gap: 18px;
         a {
           color: var(--color-text-1);
+        }
+      }
+    }
+    @media screen and (max-width: 790px) {
+      .header_bg {
+        height: 370px;
+        &__wrapper {
+          height: 370px;
+        }
+        &__info {
+          &--big {
+            font-size: 2.4rem;
+          }
         }
       }
     }

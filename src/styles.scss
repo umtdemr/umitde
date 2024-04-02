@@ -44,6 +44,17 @@ body {
 .container {
   width: 760px;
   margin: 0 auto;
+  @media screen and (max-width: 790px)  {
+    width: 100%;
+    padding: 0 20px;
+    &.nav_container {
+      padding: 0 14px;
+    }
+  }
+}
+
+img {
+  max-width: 100%;
 }
 
 .section_title {

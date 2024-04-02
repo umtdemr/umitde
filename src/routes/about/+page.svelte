@@ -80,6 +80,9 @@
 				flex-direction: column;
 				gap: 30px;
 			}
+			@media screen and (max-width: 790px) {
+				flex-direction: column;
+			}
 		}
 		.journey_list {
 			display: flex;

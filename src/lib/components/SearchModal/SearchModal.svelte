@@ -73,5 +73,8 @@
           background-size: 10px 10px;
         }
       }
+      @media screen and (max-width: 790px) {
+        width: calc(100% - 35px);
+      }
     }
 </style>

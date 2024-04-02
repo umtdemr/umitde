@@ -27,5 +27,8 @@
       gap: 28px;
       margin-top: 65px;
       user-select: none;
+      @media screen and (max-width: 790px) {
+        grid-template-columns: 1fr;
+      }
     }
 </style>
