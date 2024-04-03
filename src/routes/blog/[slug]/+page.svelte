@@ -42,7 +42,7 @@
         font-size: 1.15rem;
         line-height: 1.5rem;
       }
-  }
+    }
     .separator {
       width: 100%;
       height: 2px;

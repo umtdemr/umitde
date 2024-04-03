@@ -9,4 +9,14 @@ categories:
     - General
 ---
 
-basic post
+## basic post
+
+
+```js
+console.log("hello world")
+const ctx = canvas.getContext('2d');
+
+ctx.beginPath();
+ctx.arc(0, 0, 5, 0, 2 * Math.PI);
+ctx.fill()
+```
