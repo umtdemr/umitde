@@ -31,6 +31,7 @@
 	"type": "module",
 	"dependencies": {
 		"front-matter": "^4.0.2",
-		"sharp": "^0.33.3"
+		"sharp": "^0.33.3",
+		"shiki": "^1.2.4"
 	}
 }
