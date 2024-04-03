@@ -1,15 +1,20 @@
 <script>
     import { page } from '$app/stores';
+    import { beforeNavigate } from "$app/navigation";
+    import { fade, blur } from 'svelte/transition';
     import { createEventDispatcher } from 'svelte';
     import Logo from '$lib/components/Logo.svelte'
     import { src, width, height } from '$lib/images/header_bg.jpeg?as=metadata'
     import HeaderBgImgAvif from '$lib/images/header_bg.jpeg?format=avif'
     import HeaderBgImgWebp from '$lib/images/header_bg.jpeg?format=webp'
     import SearchIcon from '$lib/components/icons/SearchIcon.svelte'
+    import CloseIcon from "$lib/components/icons/CloseIcon.svelte";
+
 
     const dispatch = createEventDispatcher();
 
     export let showBg = false;
+    let showMobileMenu = false;
 
     function handleSearchIconClick(e) {
         e?.preventDefault();
@@ -17,6 +22,18 @@
             status: true
         });
     }
+
+    function toggleMobileMenu(state) {
+        showMobileMenu = state;
+    }
+
+    function handleMenuButtonClick() {
+        toggleMobileMenu(true);
+    }
+
+    beforeNavigate(() => {
+        showMobileMenu = false;
+    })
 </script>
 
 
@@ -28,9 +45,11 @@
                    <Logo />
                 </div>
                 <div class="nav_right">
+                    <a href="/" aria-current={$page.url.pathname === "/" ? 'page' : undefined}>Home</a>
                     <a href="/about" aria-current={$page.url.pathname === "/about" ? 'page' : undefined}>About</a>
                     <a href="/portfolio" aria-current={$page.url.pathname === "/portfolio" ? 'page' : undefined}>Portfolio</a>
-                    <a href="#" on:click={handleSearchIconClick} aria-label="Search"><SearchIcon /></a>
+                    <button on:click={handleSearchIconClick} aria-label="Search"><SearchIcon /></button>
+                    <button class="mobile_menu_btn" on:click={handleMenuButtonClick} aria-label="Menu"></button>
                 </div>
             </nav>
         </div>
@@ -55,8 +74,39 @@
             </div>
         </div>
     {/if}
-
 </header>
+{#if showMobileMenu}
+    <div
+        transition:fade={{  duration: 100 }}
+        class="mobile_menu">
+        <div class="container">
+            <div class="mobile_menu__header">
+                <h2>Menu</h2>
+                <button aria-label="Close mobile menu" on:click={() => toggleMobileMenu(false)}>
+                    <CloseIcon width={16} height={16} />
+                </button>
+            </div>
+            <nav class="mobile_menu__nav">
+                <ul>
+                    <li>
+                        <a href="/" aria-current={$page.url.pathname === "/" ? 'page' : undefined}>Home</a>
+                    </li>
+                    <li>
+                        <a href="/about" aria-current={$page.url.pathname === "/about" ? 'page' : undefined}>About</a>
+                    </li>
+                    <li>
+                        <a href="/portfolio" aria-current={$page.url.pathname === "/portfolio" ? 'page' : undefined}>Portfolio</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div
+        transition:fade={{ duration: 100 }}
+        class="mobile_menu__overlay"
+        on:click={() => toggleMobileMenu(false)}>
+    </div>
+{/if}
 
 <style lang="scss">
     header {
@@ -119,8 +169,79 @@
         flex-direction: row;
         align-items: center;
         gap: 18px;
-        a {
+        a, button {
           color: var(--color-text-1);
+        }
+        .mobile_menu_btn {
+          display: none;
+          width: 30px;
+          height: 30px;
+          position: relative;
+          &::before, &::after {
+            content: "";
+            background-color: #fff;
+            height: 1px;
+            left: 3px;
+            position: absolute;
+            width: 24px;
+          }
+          &::before {
+            top: 11px;
+          }
+          &::after {
+            bottom: 11px;
+          }
+        }
+        @media screen and (max-width: 790px) {
+          .mobile_menu_btn {
+            display: block;
+          }
+          a {
+            display: none;
+          }
+        }
+      }
+    }
+    .mobile_menu {
+      position: absolute;
+      margin-top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 14px);
+      background-color: red;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 14px 0 19px 0;
+      &__overlay {
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, .68);
+        backdrop-filter: blur(20px);
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+      }
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        color: var(--color-text-1);
+        padding: 10px 0 20px 0;
+      }
+      &__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        li {
+          padding: 15px 0;
+          border-bottom: 1px solid hsla(240,5%,96%,.05);
+        }
+        a {
+          color: var(--color-text-2);
         }
       }
     }

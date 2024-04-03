@@ -57,6 +57,14 @@ img {
   max-width: 100%;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
 .section_title {
   font-size: 3rem;
   color: var(--color-text-1);
