@@ -11,6 +11,7 @@ categories:
 
 ## basic post
 
+[hello](https://google.com)
 
 ```js
 console.log("hello world")
