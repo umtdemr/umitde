@@ -63,6 +63,9 @@
 	main {
 		flex-grow: 1;
 		padding: 100px 0;
+		@media screen and (max-width: 790px) {
+			padding: 45px 0;
+		}
 	}
 
 	footer {

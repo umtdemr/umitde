@@ -15,3 +15,12 @@
         src={data.src}
     />
 </picture>
+
+
+<style lang="scss">
+   img {
+     @media screen and (max-width: 790px) {
+        height: auto;
+     }
+   }
+</style>
