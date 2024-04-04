@@ -8,4 +8,5 @@ My website
 - [x] Use more suitable image format for the page speed
 - [x] Generate json for works
 - [ ] Responsive design
+- [ ] Search API
 - [ ] Handle SEO, sitemap
