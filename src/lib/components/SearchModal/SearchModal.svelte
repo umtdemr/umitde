@@ -1,21 +1,21 @@
-<script>
+<script lang="ts">
     import {createEventDispatcher, onMount} from "svelte";
     import Modal from "$lib/components/Modal/Modal.svelte";
     import SearchIcon from "$lib/components/icons/SearchIcon.svelte";
     import {beforeNavigate} from "$app/navigation";
+    import type {PostWithPath} from "$lib/types";
 
     const dispatch = createEventDispatcher();
 
-    /** @type {number} */
-    let timer;
+    let timer: number;
 
-    /** @type {HTMLInputElement} */
-    let inputEl;
+    let inputEl: HTMLInputElement;
 
-    /** @type {string} */
-    let searchTerm;
+    let searchTerm: string;
 
-    let posts = [];
+    let message: string;
+
+    let posts: PostWithPath = [];
 
     function handleCloseModal() {
         dispatch("changeSearchModalStatus", {
@@ -24,19 +24,29 @@
     }
 
     const searchPosts = async () => {
-        posts.length = 0;
-        clearTimeout(timer);
-        timer = setTimeout(async () => {
-            if (!searchTerm) {
-                return;
-            }
-
-            const query = encodeURI(searchTerm)
-            const response = await fetch(`api/posts?s=${query}`);
-            const postsResponse = await response.json();
+        message = "";
+        try {
             posts.length = 0;
-            posts.push(...postsResponse);
-        }, 500)
+            clearTimeout(timer);
+            timer = setTimeout(async () => {
+                if (!searchTerm) {
+                    return;
+                }
+
+                const query = encodeURI(searchTerm)
+                const response = await fetch(`/api/posts?s=${query}`);
+                const postsResponse = await response.json();
+                posts.length = 0;
+                if (postsResponse.length) {
+                    posts.push(...postsResponse);
+                } else {
+                    message = "No post found"
+                }
+            }, 500)
+        } catch (err) {
+            console.error(err);
+            message = "error while searching"
+        }
     }
 
     beforeNavigate(() => {
@@ -50,12 +60,12 @@
 <Modal on:closeModal={handleCloseModal}>
     <div class="search_modal">
         <div class="search_modal__input_wrapper">
-            <a class="search_modal__icon" href="#" on:click={(e) => {
+            <button aria-label="search" class="search_modal__icon" on:click={(e) => {
                 e.preventDefault();
                 searchPosts()
             }}>
                 <SearchIcon />
-            </a>
+            </button>
             <input
                     type="search"
                     placeholder="Search in blog"
@@ -66,8 +76,11 @@
 
         </div>
         <div class="search_modal__results">
+            {#if message}
+                <div class="result_item">{message}</div>
+            {/if}
             {#each posts as post}
-                <a href={`/blog/${post.slug}`} class="result_item">{post.title}</a>
+                <a href={`/blog/${post?.slug}`} class="result_item">{post?.title}</a>
             {/each}
         </div>
     </div>
