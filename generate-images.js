@@ -57,12 +57,14 @@ async function getPostImages(location) {
         const fmContent = fm(content);
 
         const {
-            image
+            image,
+            imageAlt: alt
         } = fmContent.attributes;
 
         images.push({
             image,
-            slug: directory
+            slug: directory,
+            alt
         })
     }
     return images;
@@ -82,7 +84,7 @@ async function generatePostImages() {
     const imageGeneratedDir =  path.join(__dirname, 'src/lib/generated/posts');
     await makeDirectory(imageGeneratedDir);
     postImages.forEach((postImage, index) => {
-        const { image, slug } = postImage;
+        const { image, slug, alt } = postImage;
         const { dominantColour, format, placeholder, width } = imageMetadata[index];
         const postPath = path.join(imageGeneratedDir, `${slug}.ts`);
 
@@ -115,6 +117,7 @@ const data = {
   width,
   height,
   src,
+  alt: '${alt}',
   sources: ${sources},
   dominantColour: '${dominantColour}',
   placeholder:
@@ -195,7 +198,7 @@ export { data as default };
 }
 
 async function main() {
-    const promises = [generatePortfolioImages()]
+    const promises = [generatePortfolioImages(), generatePostImages()]
     await Promise.allSettled(promises)
 }
 

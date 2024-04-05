@@ -7,7 +7,7 @@
         <source srcset={source.srcset} type={source.type} />
     {/each}
     <img
-        alt="post"
+        alt={data.alt}
         class="lazy"
         decoding="async"
         width="760"

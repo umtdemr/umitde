@@ -9,6 +9,7 @@ const data = {
   width,
   height,
   src,
+  alt: 'first post image alt',
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },
     { srcset: srcsetwebp, type: 'image/webp' },

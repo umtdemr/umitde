@@ -1,9 +1,30 @@
 <script>
-    import PostFeatureMockImg from '$lib/images/post_mockup_featured_image.png';
     import PostImage from "$lib/components/Post/PostImage.svelte";
+    import {page} from "$app/stores";
 
     export let data;
 </script>
+
+<svelte:head>
+    <title>{data.metadata.title}</title>
+    <meta name="description" content={data.metadata.description} />
+    <meta property="og:title" content={data.metadata.title} />
+    <meta property="og:description" content={data.metadata.description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={$page.url.href} />
+    <meta property="og:image" content={data.metadata.imageData.src} />
+    <meta property="og:image:width" content="760" />
+    <meta property="og:image:height" content="367" />
+    <meta property="og:image:alt" content={data.metadata.imageData.alt} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={data.metadata.title} />
+    <meta property="twitter:description" content={data.metadata.description} />
+    <meta property="twitter:site" content="@mediumgoal" />
+    <meta property="twitter:creator" content="@mediumgoal" />
+    <meta property="twitter:image" content={data.metadata.imageData.src} />
+    <meta property="twitter:url" content={$page.url.href} />
+</svelte:head>
+
 <article class="post">
     <div class="post__header">
         <PostImage data={data.metadata.imageData} />

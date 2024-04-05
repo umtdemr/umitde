@@ -5,6 +5,7 @@ date: "2024-03-25"
 slug: first-post
 published: true
 image: post_mockup_featured_image.png
+imageAlt: "first post image alt"
 categories:
     - General
 ---
