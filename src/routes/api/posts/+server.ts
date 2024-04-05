@@ -1,7 +1,7 @@
 import {json} from "@sveltejs/kit";
 import type {Post, PostWithPath} from "$lib/types";
 
-async function getPosts() {
+async function getPosts(query?: string) {
     const posts: PostWithPath[] = [];
     const paths = import.meta.glob('/src/posts/*/*.md', {
         eager: true
@@ -16,6 +16,26 @@ async function getPosts() {
         if (!metadata.published) {
             continue;
         }
+        if (query) {
+            const lowerCaseQuery = query.toLowerCase();
+            const content = file.default.render().html;
+            let plainTextContent = content.replace(/<\/?[^>]+(>|$)/g, "");
+            plainTextContent = plainTextContent.replace(/[\*\_\`\#\>\-\+\[\]\!\(\)]/g, "");
+
+            let includesQuery = false;
+
+            if (
+                metadata.title.toLowerCase().includes(lowerCaseQuery) ||
+                metadata.description?.toLowerCase().includes(lowerCaseQuery) ||
+                plainTextContent.toLowerCase().includes(lowerCaseQuery)
+            ) {
+                includesQuery = true;
+            }
+
+            if (!includesQuery) {
+                continue;
+            }
+        }
 
         const postDate = new Date(metadata.date);
         metadata.date = postDate.toISOString()
@@ -27,6 +47,7 @@ async function getPosts() {
         metadata.strDate = postDate.toLocaleDateString('en-US', strDateOptions)
         const postPath = path.substring(0, path.lastIndexOf('/'))
         const imageData = await import(`../../../lib/generated/posts/${metadata.slug}.ts`);
+
         posts.push({...metadata, path: postPath, imageData: imageData.default });
     }
 
@@ -37,7 +58,8 @@ async function getPosts() {
     return posts
 }
 
-export async function GET() {
-    const posts = await getPosts();
+export async function GET(event: any) {
+    const searchQuery = event?.url?.searchParams?.get('s');
+    const posts = await getPosts(searchQuery);
     return json(posts);
 }
