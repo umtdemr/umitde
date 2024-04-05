@@ -135,7 +135,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      filter: brightness(53%);
+      filter: brightness(45%);
       width: 100%;
       height: 520px;
       z-index: -1;
@@ -170,6 +170,9 @@
         align-items: center;
         gap: 18px;
         a, button {
+          color: var(--color-text-2);
+        }
+        a[aria-current='page'] {
           color: var(--color-text-1);
         }
         .mobile_menu_btn {
