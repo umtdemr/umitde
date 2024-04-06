@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-    <title>Portfolio</title>
+    <title>Works</title>
 </svelte:head>
 
 <section class="portfolio">
