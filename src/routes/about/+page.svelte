@@ -16,7 +16,7 @@
 			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
 	" />
 
-	<meta property="og:title" content="Ümit Demir" />
+	<meta property="og:title" content="Abot - Ümit Demir" />
 	<meta name="og:description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
 			I live in Istanbul Turkey.
 
@@ -32,7 +32,7 @@
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="twitter:site" content="@mediumgoal" />
 	<meta property="twitter:creator" content="@mediumgoal" />
-	<meta property="twitter:title" content="Ümit Demir" />
+	<meta property="twitter:title" content="About - Ümit Demir" />
 	<meta name="twitter:description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
 			I live in Istanbul Turkey.
 
