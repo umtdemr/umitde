@@ -1,7 +1,4 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
 	import PostList from "$lib/components/Post/PostList.svelte";
 	import { src, format, width, height } from '$lib/images/header_bg.jpeg?as=metadata'
 	import {page} from "$app/stores";

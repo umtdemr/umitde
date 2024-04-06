@@ -6,9 +6,7 @@
 	import Logo from "$lib/components/Logo.svelte";
 	import LinkedinIcon from "$lib/components/icons/LinkedinIcon.svelte";
 	import GithubIcon from "$lib/components/icons/GithubIcon.svelte";
-	import Modal from "$lib/components/Modal/Modal.svelte";
 	import SearchModal from "$lib/components/SearchModal/SearchModal.svelte";
-	import {onMount} from "svelte";
 
 	let showBg;
 	$: showBg = $page.url.pathname === "/";
