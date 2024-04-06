@@ -1,11 +1,47 @@
 <script>
 	import JourneyJson from './journey.json';
+	import {page} from "$app/stores";
 	console.log(JourneyJson)
 </script>
 
 <svelte:head>
-	<title>About</title>
-	<meta name="description" content="About this app" />
+	<title>About - Ümit Demir</title>
+	<meta name="description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
+			I live in Istanbul Turkey.
+
+			I love coding, problem solving, fitness and photography.
+			Unlike most of the developers, I'm not that much into coffee.
+			Yes, I like it but I'm not particular about the beans or the brewing method.
+
+			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
+	" />
+
+	<meta property="og:title" content="Ümit Demir" />
+	<meta name="og:description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
+			I live in Istanbul Turkey.
+
+			I love coding, problem solving, fitness and photography.
+			Unlike most of the developers, I'm not that much into coffee.
+			Yes, I like it but I'm not particular about the beans or the brewing method.
+
+			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
+	" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={$page.url.href} />
+
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:site" content="@mediumgoal" />
+	<meta property="twitter:creator" content="@mediumgoal" />
+	<meta property="twitter:title" content="Ümit Demir" />
+	<meta name="twitter:description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
+			I live in Istanbul Turkey.
+
+			I love coding, problem solving, fitness and photography.
+			Unlike most of the developers, I'm not that much into coffee.
+			Yes, I like it but I'm not particular about the beans or the brewing method.
+
+			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
+	" />
 </svelte:head>
 
 <section class="about">
