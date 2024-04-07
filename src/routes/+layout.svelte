@@ -77,6 +77,11 @@
 		.footer__socials {
 			display: flex;
 			gap: 13px;
+			a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 		}
 	}
 
