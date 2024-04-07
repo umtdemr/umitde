@@ -46,6 +46,13 @@
       background-color: var(--color-modal-dark-bg);
       display: grid;
       grid-template-columns: 547.5px 547.5px;
+
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-dark-3) transparent;
+      &::-webkit-scrollbar {
+        width: 12px;
+      }
+
       &__img {
         img {
           width: 100%;
@@ -57,6 +64,7 @@
       }
       &__info {
         padding: 20px;
+        overflow-y: auto;
         &--title {
           font-size: 2.20rem;
           color: var(--color-text-1);
@@ -68,5 +76,29 @@
         }
       }
 
+      @media screen and (max-width: 1111px) {
+        max-width: 650px;
+        width: calc(100% - 15px);
+        height: 600px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 300px 300px;
+        border-radius: 5px;
+        overflow-y: auto;
+        &__img {
+          border-radius: 5px !important;
+          img {
+            aspect-ratio: 1;
+          }
+        }
+        &__info {
+          &--title {
+            font-size: 1.5rem;
+          }
+          &--content {
+            margin-top: 15px;
+            font-size: 0.9rem;
+          }
+        }
+      }
     }
 </style>
