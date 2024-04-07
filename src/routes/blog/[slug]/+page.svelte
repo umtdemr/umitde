@@ -6,9 +6,9 @@
 </script>
 
 <svelte:head>
-    <title>{data.metadata.title}</title>
+    <title>{data.metadata.title} - Ümit Demir</title>
     <meta name="description" content={data.metadata.description} />
-    <meta property="og:title" content={data.metadata.title} />
+    <meta property="og:title" content={data.metadata.title + ' - Ümit Demir'} />
     <meta property="og:description" content={data.metadata.description} />
     <meta property="og:type" content="article" />
     <meta property="og:url" content={$page.url.href} />
@@ -17,7 +17,7 @@
     <meta property="og:image:height" content="367" />
     <meta property="og:image:alt" content={data.metadata.imageData.alt} />
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content={data.metadata.title} />
+    <meta property="twitter:title" content={data.metadata.title + ' - Ümit Demir'} />
     <meta property="twitter:description" content={data.metadata.description} />
     <meta property="twitter:site" content="@mediumgoal" />
     <meta property="twitter:creator" content="@mediumgoal" />
