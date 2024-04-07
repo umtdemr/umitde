@@ -1,5 +1,4 @@
 <script>
-    import Image from "$lib/assets/works/hierapi.jpg";
     import PortfolioModal from "$lib/components/Portfolio/PortfolioModal.svelte";
 
     let showModal = false;
@@ -13,16 +12,26 @@
     function handleModalChangeStatus(e) {
        showModal = e.detail.status;
     }
-
 </script>
 
 <div
     class="portfolio_item"
-    aria-labelledby="item_title_1"
+    aria-label={data.title}
     role="button"
     on:click={handleClick}
+    on:keydown={(e) => {
+        if (e.key === 'Enter') {
+           handleClick()
+        }
+    }}
+    tabindex="0"
     >
-    <img src={data.images[0].imageData.src} class="portfolio_item__img" alt="portfolio img"/>
+    <picture>
+        {#each data.images[0].imageData.sources as source}
+            <source srcset={source.srcset} type={source.type} />
+        {/each}
+        <img src={data.images[0].imageData.src} class="portfolio_item__img" alt={data.images[0].imageData.alt}>
+    </picture>
     <h3 class="portfolio_item__title" id="item_title_1">{data.title}</h3>
     <div class="portfolio_tags">
         {#each data.tags as tag}
