@@ -9,7 +9,7 @@ const data = {
   width,
   height,
   src,
-  alt: 'first post image alt',
+  alt: 'my new websites homepage on mobile',
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },
     { srcset: srcsetwebp, type: 'image/webp' },

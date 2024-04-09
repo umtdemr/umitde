@@ -5,9 +5,11 @@ date: "2024-04-06"
 slug: a-new-face-a-new-identity
 published: true
 image: a-new-face-a-new-identity.png
-imageAlt: "my new website's homepage on mobile"
+imageAlt: "my new websites homepage on mobile"
 categories:
     - General
+postImages:
+    - my-old-website.png: my old website home page
 ---
 
 I've finally changed my website completely. I always wanted to write blog posts on my website. 
@@ -18,8 +20,6 @@ But I want to share what I learn. And I believe this is the best place to do it 
 
 Honestly, I don't know what I thought but that one looked like a marketing page. And since I developed it 3 years ago, It was quite old. It was build with Next js (v11).
 
- ![my old website](/my-old-website.png)
- 
 
 ## How I built this blog
 

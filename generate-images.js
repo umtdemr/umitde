@@ -64,7 +64,8 @@ async function getPostImages(location) {
         images.push({
             image,
             slug: directory,
-            alt
+            alt,
+            contentImages: fmContent.attributes.postImages
         })
     }
     return images;
@@ -86,29 +87,31 @@ async function generatePostImages() {
     postImages.forEach((postImage, index) => {
         const { image, slug, alt } = postImage;
         const { dominantColour, format, placeholder, width } = imageMetadata[index];
-        const postPath = path.join(imageGeneratedDir, `${slug}.ts`);
+        const postDirectory = path.join(imageGeneratedDir, slug);
+        const postPath = path.join(postDirectory, `${slug}.ts`);
 
-        const source = `$lib/assets/blog/${slug}/${image}`
-        const srcsetImportArray = formats.map(
-            (formatsElement) =>
-                `import srcset${formatsElement} from '${source}?w=${
-                    width < outputSizes[0] ? `${width};` : ''
-                }${outputSizes
-                    .filter((outputSizesElement) => outputSizesElement <= width)
-                    .join(';')}&format=${formatsElement === 'auto' ? format : formatsElement}&as=srcset';`,
-        );
-        const sources = `[\n${formats
-            .map(
+        const generatePath = (image) => {
+            const source = `$lib/assets/blog/${slug}/${image}`
+            const srcsetImportArray = formats.map(
                 (formatsElement) =>
-                    `    { srcset: ${`srcset${formatsElement}`}, type: ${
-                        formatsElement === 'auto' ? `'image/${format}'` : `'image/${formatsElement}'`
-                    } },`,
-            )
-            .join('\n')}\n  ]`;
-        const result = `import meta from '${source}?w=${Math.min(
-            maxWidth,
-            width,
-        )}&as=meta:height;src;width';
+                    `import srcset${formatsElement} from '${source}?w=${
+                        width < outputSizes[0] ? `${width};` : ''
+                    }${outputSizes
+                        .filter((outputSizesElement) => outputSizesElement <= width)
+                        .join(';')}&format=${formatsElement === 'auto' ? format : formatsElement}&as=srcset';`,
+            );
+            const sources = `[\n${formats
+                .map(
+                    (formatsElement) =>
+                        `    { srcset: ${`srcset${formatsElement}`}, type: ${
+                            formatsElement === 'auto' ? `'image/${format}'` : `'image/${formatsElement}'`
+                        } },`,
+                )
+                .join('\n')}\n  ]`;
+            return `import meta from '${source}?w=${Math.min(
+                maxWidth,
+                width,
+            )}&as=meta:height;src;width';
 ${srcsetImportArray.join('\n')}
 const { height, src, width } = meta;
 
@@ -126,8 +129,11 @@ const data = {
 
 export { data as default };
 `;
-        fs.writeFileSync(postPath, result, 'utf-8');
+        }
+        const result = generatePath(image);
 
+        fs.mkdirSync(postDirectory);
+        fs.writeFileSync(postPath, result, 'utf-8');
     });
 
 }
