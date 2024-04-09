@@ -46,7 +46,7 @@ async function getPosts(query?: string) {
         }
         metadata.strDate = postDate.toLocaleDateString('en-US', strDateOptions)
         const postPath = path.substring(0, path.lastIndexOf('/'))
-        const imageData = await import(`../../../lib/generated/posts/${metadata.slug}.ts`);
+        const imageData = await import(`../../../lib/generated/posts/${metadata.slug}/${metadata.slug}.ts`);
 
         posts.push({...metadata, path: postPath, imageData: imageData.default });
     }

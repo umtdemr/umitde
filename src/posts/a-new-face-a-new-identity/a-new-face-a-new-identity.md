@@ -9,8 +9,16 @@ imageAlt: "my new websites homepage on mobile"
 categories:
     - General
 postImages:
-    - my-old-website.png: my old website home page
+    - slug: my-old-website
+      alt: my old website home page
+      image: my-old-website.png
 ---
+
+<script>
+    import MyOldWebsiteImg from '$lib/generated/posts/a-new-face-a-new-identity/my-old-website';
+    import PostImage from "$lib/components/Post/PostImage.svelte";
+</script>
+
 
 I've finally changed my website completely. I always wanted to write blog posts on my website. 
 Even though I'd added a blog section to my old website, I've never written any blog post there. 
@@ -20,6 +28,7 @@ But I want to share what I learn. And I believe this is the best place to do it 
 
 Honestly, I don't know what I thought but that one looked like a marketing page. And since I developed it 3 years ago, It was quite old. It was build with Next js (v11).
 
+<PostImage data={MyOldWebsiteImg} />
 
 ## How I built this blog
 

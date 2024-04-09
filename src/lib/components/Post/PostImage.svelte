@@ -10,8 +10,8 @@
         alt={data.alt}
         class="lazy"
         decoding="async"
-        width="760"
-        height="367"
+        width={data.width}
+        height={data.height}
         src={data.src}
     />
 </picture>

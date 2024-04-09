@@ -82,15 +82,31 @@ async function generatePostImages() {
     });
     const imageMetadata = await Promise.all(imageMetaPromises);
 
+    const contentImageMetaPromises = [];
+    for (const postImage of postImages) {
+        const { slug } = postImage
+        for (const contentImage of postImage.contentImages) {
+            const { image } = contentImage;
+            const source = path.join(__dirname, 'src/lib/assets/blog/', slug, image);
+            contentImageMetaPromises.push(generateImageMeta(source));
+        }
+    }
+
+    const contentImageMetaData = await Promise.all(contentImageMetaPromises);
+
     const imageGeneratedDir =  path.join(__dirname, 'src/lib/generated/posts');
     await makeDirectory(imageGeneratedDir);
-    postImages.forEach((postImage, index) => {
+
+    let contentImageIndex = 0;
+    for (let index in postImages) {
+        const postImage = postImages[index];
         const { image, slug, alt } = postImage;
         const { dominantColour, format, placeholder, width } = imageMetadata[index];
         const postDirectory = path.join(imageGeneratedDir, slug);
         const postPath = path.join(postDirectory, `${slug}.ts`);
 
-        const generatePath = (image) => {
+        const generatePath = (image, width, slug, alt, placeholder, dominantColour, format, renderSlug = null) => {
+            renderSlug = renderSlug ? renderSlug : slug;
             const source = `$lib/assets/blog/${slug}/${image}`
             const srcsetImportArray = formats.map(
                 (formatsElement) =>
@@ -116,7 +132,7 @@ ${srcsetImportArray.join('\n')}
 const { height, src, width } = meta;
 
 const data = {
-  slug: '${slug}',
+  slug: '${renderSlug}',
   width,
   height,
   src,
@@ -130,11 +146,20 @@ const data = {
 export { data as default };
 `;
         }
-        const result = generatePath(image);
+        const result = generatePath(image, width, slug, alt, placeholder, dominantColour, format);
 
-        fs.mkdirSync(postDirectory);
+        await makeDirectory(postDirectory)
         fs.writeFileSync(postPath, result, 'utf-8');
-    });
+
+        for (const contentImage of postImage.contentImages ) {
+            const { image, slug: contentImgSlug, alt } = contentImage;
+            const { dominantColour, format, placeholder, width } = contentImageMetaData[contentImageIndex];
+            const contentImagePath = path.join(postDirectory, `${contentImgSlug}.ts`);
+            const result = generatePath(image, width, slug, alt, placeholder, dominantColour, format, contentImgSlug);
+            fs.writeFileSync(contentImagePath, result, 'utf-8');
+            contentImageIndex++;
+        }
+    }
 
 }
 
