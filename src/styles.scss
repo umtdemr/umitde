@@ -99,6 +99,8 @@ pre {
 .post__content {
   h1, h2, h3, h4, h5, h6, strong {
     font-weight: 700;
+    color: var(--color-text-1);
+    margin: 40px 0 10px 0;
   }
   h1 {
     font-size: 1.875rem;

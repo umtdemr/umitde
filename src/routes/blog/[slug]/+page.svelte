@@ -50,7 +50,6 @@
           color: var(--color-text-1);
           font-size: 1.875rem;
           margin-top: 10px;
-
         }
         time {
           color: var(--color-text-2);
