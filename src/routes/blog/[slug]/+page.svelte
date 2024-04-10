@@ -28,8 +28,8 @@
 <article class="post">
     <div class="post__header">
         <PostImage data={data.metadata.imageData} />
-        <h2>{data.metadata.title}</h2>
-        <time class="post_item__footer--date" datetime={data.metadata.date}>{data.metadata.date}</time>
+        <h1 class="title">{data.metadata.title}</h1>
+        <time class="post_item__footer--date" datetime={data.metadata.date}>{data.metadata.strDate}</time>
     </div>
 
     <div class="post__content">
@@ -47,7 +47,7 @@
     .post {
       width: 100%;
       &__header {
-        h2 {
+        .title {
           color: var(--color-text-1);
           font-size: 1.875rem;
           margin-top: 10px;
