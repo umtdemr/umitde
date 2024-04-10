@@ -31,6 +31,7 @@
 	"type": "module",
 	"dependencies": {
 		"@vercel/analytics": "^1.2.2",
+		"@vercel/speed-insights": "^1.0.10",
 		"front-matter": "^4.0.2",
 		"sharp": "^0.33.3",
 		"shiki": "^1.2.4"

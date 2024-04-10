@@ -1,6 +1,7 @@
 <script>
 	import { page } from "$app/stores";
 	import { inject } from '@vercel/analytics'
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import Header from '$lib/components/Header.svelte'
 	import './../_reset.scss';
 	import './../styles.scss';
@@ -19,6 +20,8 @@
 	}
 
 	inject();  // vercel web analytics
+	injectSpeedInsights()  // vercel speed insights
+
 </script>
 
 <div class="app" class:notHome={!showBg}>
