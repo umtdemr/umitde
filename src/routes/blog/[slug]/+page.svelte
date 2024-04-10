@@ -38,7 +38,8 @@
 </article>
 <div class="separator"></div>
 <div class="post_edit">
-    Find an issue with this post? You can <a href="#">edit on github.</a>
+    Find an issue with this post?
+    You can <a target="_blank" rel="nofollow" href={`https://github.com/umtdemr/umitde/tree/master/src/posts/${data.metadata.slug}/${data.metadata.slug}.md`}>edit on github.</a>
 </div>
 
 
