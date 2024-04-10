@@ -59,7 +59,6 @@ async function getPosts(query?: string) {
 }
 
 export async function GET(event: any) {
-    const searchQuery = event?.url?.searchParams?.get('s');
-    const posts = await getPosts(searchQuery);
+    const posts = await getPosts();
     return json(posts);
 }
