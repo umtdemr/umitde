@@ -1,10 +1,12 @@
 :root {
   --color-dark-1: #202124;
   --color-dark-2: #303239;
+  --color-dark-3: #4D515E;
   --color-blue: #4C67B7;
   --color-text-1: #E4E4E7;
   --color-text-2: #C1C1C1;
   --color-link: #8ab4f8;
+  --color-modal-dark-bg: #2A2A2A;
 }
 
 @font-face {
@@ -22,20 +24,94 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  font-family: "Be Vietnam", sans-serif;
 }
 
 body {
-  font-family: "Be Vietnam", sans-serif;
   &.dark {
     background-color: var(--color-dark-1);
     color: var(--color-text-2);
     a {
       color: var(--color-link);
+      text-decoration: none;
     }
+  }
+  &.modal--opened {
+    overflow: hidden;
   }
 }
 
 .container {
   width: 760px;
   margin: 0 auto;
+  @media screen and (max-width: 790px)  {
+    width: 100%;
+    padding: 0 20px;
+    &.nav_container {
+      padding: 0 14px;
+    }
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.section_title {
+  font-size: 3rem;
+  color: var(--color-text-1);
+}
+.section_desc {
+  margin-top: 16px;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.portfolio_tags {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  margin-top: 10px;
+  .tag_item {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--color-text-1);
+    &.purple {
+      background-color: #4F55ED;
+    }
+  }
+}
+pre {
+  padding: 10px;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.post__content {
+  h1, h2, h3, h4, h5, h6, strong {
+    font-weight: 700;
+    color: var(--color-text-1);
+    margin: 40px 0 10px 0;
+  }
+  h1 {
+    font-size: 1.875rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+  em {
+    font-style: italic;
+  }
+  p {
+    margin: 30px 0;
+  }
 }

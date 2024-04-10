@@ -1,26 +1,178 @@
+<script>
+	import JourneyJson from './journey.json';
+	import {page} from "$app/stores";
+	console.log(JourneyJson)
+</script>
+
 <svelte:head>
-	<title>About</title>
-	<meta name="description" content="About this app" />
+	<title>About - Ümit Demir</title>
+	<meta name="description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
+			I live in Istanbul Turkey.
+
+			I love coding, problem solving, fitness and photography.
+			Unlike most of the developers, I'm not that much into coffee.
+			Yes, I like it but I'm not particular about the beans or the brewing method.
+
+			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
+	" />
+
+	<meta property="og:title" content="Abot - Ümit Demir" />
+	<meta name="og:description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
+			I live in Istanbul Turkey.
+
+			I love coding, problem solving, fitness and photography.
+			Unlike most of the developers, I'm not that much into coffee.
+			Yes, I like it but I'm not particular about the beans or the brewing method.
+
+			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
+	" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={$page.url.href} />
+
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:site" content="@mediumgoal" />
+	<meta property="twitter:creator" content="@mediumgoal" />
+	<meta property="twitter:title" content="About - Ümit Demir" />
+	<meta name="twitter:description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
+			I live in Istanbul Turkey.
+
+			I love coding, problem solving, fitness and photography.
+			Unlike most of the developers, I'm not that much into coffee.
+			Yes, I like it but I'm not particular about the beans or the brewing method.
+
+			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
+	" />
 </svelte:head>
 
-<div class="text-column">
-	<h1>About this app</h1>
+<section class="about">
+	<h1 class="section_title">About</h1>
+	<div class="section_desc">
+		<p>
+			Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
+			I live in Istanbul Turkey.
+		</p>
+		<p>
+			I love coding, problem solving, fitness and photography.
+			Unlike most of the developers, I'm not that much into coffee.
+			Yes, I like it but I'm not particular about the beans or the brewing method.
+		</p>
+		<p>
+			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
+		</p>
+		<p>
+			To contact me, you can send a mail to <a href="mailto:umitde296@gmail.com">umitde296@gmail.com</a>
+		</p>
+	</div>
+</section>
+<section class="journey">
+	<h1 class="section_title">Journey</h1>
+	<div class="journey_list">
+		{#each  JourneyJson.data as journeyData}
+			<div class="journey__content">
+				<span class="journey__content--year">{journeyData.year}</span>
+				<div class="journey__content--list">
+					{#each journeyData.content as journeyContent, index}
+						<div class="journey__item">
+							<span class="journey__item--step">
+								<span class="step_circle">
+									<span class="step_circle_inner">
+									</span>
+								</span>
+								{#if index < journeyData.content.length - 1}
+									<span class="step_stick"></span>
+								{/if}
+							</span>
+							<span class="journey__item--title">{journeyContent.title}</span>
+							<p class="journey__item--info">{journeyContent.desc}</p>
+						</div>
+					{/each}
+				</div>
+			</div>
+		{/each}
+	</div>
+</section>
 
-	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
 
-	<pre>npm create svelte@latest</pre>
-
-	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
-	</p>
-
-	<p>
-		The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading and form handling. Try
-		using it with JavaScript disabled!
-	</p>
-</div>
+<style lang="scss">
+	.about {
+		.section_desc {
+			p {
+				margin-top: 2rem;
+			}
+		}
+	}
+	.journey {
+		margin-top: 75px;
+		padding-bottom: 50px;
+		&__content {
+			display: flex;
+			gap: 28px;
+			&--year {
+				font-size: 1.25rem;
+				color: var(--color-text-1);
+			}
+			&--list {
+				display: flex;
+				flex-direction: column;
+				gap: 30px;
+			}
+			@media screen and (max-width: 790px) {
+				flex-direction: column;
+			}
+		}
+		.journey_list {
+			display: flex;
+			flex-direction: column;
+			gap: 50px;
+		}
+		&__item {
+			position: relative;
+			&--step {
+				position: absolute;
+				height: 100%;
+				.step_circle {
+					width: 21px;
+					height: 21px;
+					border-radius: 50%;
+					border: 1px solid var(--color-blue);
+					display: block;
+					position: relative;
+				}
+				.step_circle_inner {
+					width: 5px;
+					height: 5px;
+					border-radius: 50%;
+					background-color: #fff;
+					display: block;
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
+				}
+				.step_stick {
+					width: 1px;
+					background-color: var(--color-blue);
+					display: block;
+					position: absolute;
+					left: 50%;
+					transform: translateX(-50%);
+					height: calc(100% - 21px + 30px);
+				}
+			}
+			&--title {
+				font-size: 1rem;
+				color: var(--color-text-1);
+				margin-left: 40px;
+			}
+			&--info {
+				font-size: 0.875rem;
+				margin-top: 10px;
+				line-height: 1.3rem;
+				margin-left: 40px;
+			}
+		}
+	}
+	.journey_list {
+		margin-top: 55px;
+	}
+</style>
