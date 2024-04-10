@@ -48,7 +48,7 @@
                     <a href="/" aria-current={$page.url.pathname === "/" ? 'page' : undefined}>Home</a>
                     <a href="/about" aria-current={$page.url.pathname === "/about" ? 'page' : undefined}>About</a>
                     <a href="/works" aria-current={$page.url.pathname === "/works" ? 'page' : undefined}>Works</a>
-                    <button on:click={handleSearchIconClick} aria-label="Search"><SearchIcon /></button>
+<!--                    <button on:click={handleSearchIconClick} aria-label="Search"><SearchIcon /></button>-->
                     <button class="mobile_menu_btn" on:click={handleMenuButtonClick} aria-label="Menu"></button>
                 </div>
             </nav>
