@@ -1,5 +1,6 @@
 <script>
 	import { page } from "$app/stores";
+	import { inject } from '@vercel/analytics'
 	import Header from '$lib/components/Header.svelte'
 	import './../_reset.scss';
 	import './../styles.scss';
@@ -16,6 +17,8 @@
 	function handleChangeSearchModalStatus(e) {
 		isSearchModalActive = e.detail.status;
 	}
+
+	inject();  // vercel web analytics
 </script>
 
 <div class="app" class:notHome={!showBg}>
