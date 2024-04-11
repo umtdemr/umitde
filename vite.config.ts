@@ -3,5 +3,8 @@ import { defineConfig } from 'vite';
 import {imagetools} from "vite-imagetools";
 
 export default defineConfig({
-	plugins: [sveltekit(), imagetools()]
+	plugins: [sveltekit(), imagetools()],
+	define: {
+		'process.env.VITE_BUILD_TIME': JSON.stringify(new Date().toISOString()),
+	},
 });

@@ -2,14 +2,15 @@
 	import PostList from "$lib/components/Post/PostList.svelte";
 	import { src, format, width, height } from '$lib/images/header_bg.jpeg?as=metadata'
 	import {page} from "$app/stores";
+	import website from "$lib/config/website";
 
 	export let data;
 </script>
 
 <svelte:head>
-	<title>Ümit Demir</title>
+	<title>{website.siteTitle}</title>
 	<meta name="description" content="Software engineer based in Istanbul, Turkey" />
-	<meta property="og:title" content="Ümit Demir" />
+	<meta property="og:title" content={website.siteTitle} />
 	<meta property="og:description" content="Software engineer based in Istanbul, Turkey" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content={$page.url.href} />
@@ -21,7 +22,7 @@
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="twitter:site" content="@mediumgoal" />
 	<meta property="twitter:creator" content="@mediumgoal" />
-	<meta property="twitter:title" content="Ümit Demir" />
+	<meta property="twitter:title" content={website.siteTitle} />
 	<meta property="twitter:description" content="Software engineer based in Istanbul, Turkey" />
 	<meta property="twitter:image" content={src} />
 	<meta property="twitter:image:width" content={width} />

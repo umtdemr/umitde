@@ -1,3 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+Host: https://umitde.com
+Sitemap: https://umitde.com/sitemap.xml
