@@ -2,6 +2,7 @@
 title: A New Face A New Identity
 description: I've finally changed my website completely
 date: "2024-04-06"
+lastUpdated: '2024-04-05T21:00:00.000Z'
 slug: a-new-face-a-new-identity
 published: true
 image: a-new-face-a-new-identity.png
