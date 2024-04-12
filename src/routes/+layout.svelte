@@ -3,6 +3,7 @@
 	import { inject } from '@vercel/analytics'
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import Header from '$lib/components/Header.svelte'
+	import Analytics from '$lib/analytics.svelte'
 	import './../_reset.scss';
 	import './../styles.scss';
 	import Logo from "$lib/components/Logo.svelte";
@@ -23,6 +24,7 @@
 	injectSpeedInsights()  // vercel speed insights
 
 </script>
+<Analytics />
 
 <div class="app" class:notHome={!showBg}>
 	<Header showBg={showBg} on:changeSearchModalStatus={handleChangeSearchModalStatus} />
