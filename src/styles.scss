@@ -89,6 +89,11 @@ button {
       background-color: #4F55ED;
     }
   }
+  @media screen and (max-width: 790px) {
+    .tag_item {
+      font-size: 0.65rem;
+    }
+  }
 }
 pre {
   padding: 10px;
@@ -113,5 +118,23 @@ pre {
   }
   p {
     margin: 30px 0;
+  }
+  @media screen and (max-width: 790px) {
+    h1 {
+      font-size: 1.4rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .section_title {
+    font-size: 2rem;
+  }
+  .section_desc {
+    font-size: 1.1rem;
+    line-height: 1.4rem;
   }
 }

@@ -2,6 +2,7 @@
     import {createEventDispatcher, onDestroy, onMount} from "svelte";
     import Modal from "$lib/components/Modal/Modal.svelte";
     import ChevronIcon from "$lib/components/icons/ChevronIcon.svelte";
+    import ModalCloseButton from "$lib/components/Modal/ModalCloseButton.svelte";
 
     export let data: any;
     let currentImageIdx = 0;
@@ -64,40 +65,43 @@
 
 <Modal on:closeModal={handleCloseModal}>
     <div class="portfolio_modal">
-        <div class="portfolio_modal__img_wrapper" bind:this={imageListWrapper}>
-            <div class="image_list" bind:this={imageList}>
-                {#each data.images as image, index}
-                    <img class="" src={image.imageData.src} alt={image.imageData.src} data-id={index}/>
-                {/each}
+        <div class="content">
+            <div class="portfolio_modal__img_wrapper" bind:this={imageListWrapper}>
+                <div class="image_list" bind:this={imageList}>
+                    {#each data.images as image, index}
+                        <img class="" src={image.imageData.src} alt={image.imageData.src} data-id={index}/>
+                    {/each}
+                </div>
+                {#if data.images.length > 1}
+                    <button
+                            class="switch_button left"
+                            disabled={currentImageIdx === 0}
+                            aria-label="See previous image"
+                            on:click={() => handlePageSwitch(-1)}>
+                        <ChevronIcon side="left" />
+                    </button>
+                    <button
+                            class="switch_button right"
+                            disabled={currentImageIdx === data.images.length - 1}
+                            aria-label="See next image"
+                            on:click={() => handlePageSwitch(1)}>
+                        <ChevronIcon side="right" />
+                    </button>
+                {/if}
             </div>
-            {#if data.images.length > 1}
-                <button
-                    class="switch_button left"
-                    disabled={currentImageIdx === 0}
-                    aria-label="See previous image"
-                    on:click={() => handlePageSwitch(-1)}>
-                    <ChevronIcon side="left" />
-                </button>
-                <button
-                    class="switch_button right"
-                    disabled={currentImageIdx === data.images.length - 1}
-                    aria-label="See next image"
-                    on:click={() => handlePageSwitch(1)}>
-                    <ChevronIcon side="right" />
-                </button>
-            {/if}
-        </div>
-        <div class="portfolio_modal__info">
-            <h2 class="portfolio_modal__info--title">{data.title}</h2>
-            <div class="portfolio_tags">
-                {#each data.tags as tag}
-                    <div class="tag_item purple">{tag}</div>
-                {/each}
+            <div class="portfolio_modal__info">
+                <h2 class="portfolio_modal__info--title">{data.title}</h2>
+                <div class="portfolio_tags">
+                    {#each data.tags as tag}
+                        <div class="tag_item purple">{tag}</div>
+                    {/each}
+                </div>
+                <p class="portfolio_modal__info--content">
+                    {data.description}
+                </p>
             </div>
-            <p class="portfolio_modal__info--content">
-                {data.description}
-            </p>
         </div>
+        <ModalCloseButton on:btnClick={handleCloseModal} />
     </div>
 </Modal>
 
@@ -112,14 +116,19 @@
       transform: translate(-50%, -50%);
       border-radius: 33px;
       background-color: var(--color-modal-dark-bg);
-      display: grid;
-      grid-template-columns: 547.5px 547.5px;
       scrollbar-width: thin;
       scrollbar-color: var(--color-dark-3) transparent;
       &::-webkit-scrollbar {
         width: 12px;
       }
-      overflow: hidden;
+
+      .content {
+        position: relative;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 547.5px 547.5px;
+        overflow: hidden;
+      }
 
       &__img_wrapper {
         position: relative;
@@ -154,24 +163,24 @@
       }
 
       @media screen and (max-width: 1111px) {
-        max-width: 650px;
-        width: calc(100% - 15px);
-        height: 600px;
-        display: flex;
-        flex-direction: column;
+        width: 300px;
+        height: calc(333px + 280px);
         border-radius: 5px;
-        overflow-y: auto;
+        .content {
+          display: flex;
+          flex-direction: column;
+        }
         &__img_wrapper {
-          height: 300px;
+          height: 333px;
           border-radius: 5px !important;
           img {
             border-radius: 0 !important;
           }
         }
         &__info {
-          height: 300px;
+          height: 288px;
           &--title {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
           }
           &--content {
             margin-top: 15px;

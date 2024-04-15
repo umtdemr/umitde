@@ -63,6 +63,17 @@
         font-size: 1.15rem;
         line-height: 1.5rem;
       }
+      @media screen and (max-width: 790px) {
+        &__header {
+          .title {
+            font-size: 1.4rem;
+          }
+        }
+        &__content {
+          margin-top: 30px;
+          font-size: 1rem;
+        }
+      }
     }
     .separator {
       width: 100%;
@@ -77,6 +88,10 @@
       border: 1px solid var(--color-dark-2);
       a {
         text-decoration: underline;
+      }
+      @media screen and (max-width: 790px) {
+        padding: 10px 30px;
+        font-size: 0.875rem;
       }
     }
 </style>

@@ -7,7 +7,6 @@
     import { src, width, height } from '$lib/images/header_bg.jpeg?as=metadata'
     import HeaderBgImgAvif from '$lib/images/header_bg.jpeg?format=avif'
     import HeaderBgImgWebp from '$lib/images/header_bg.jpeg?format=webp'
-    import SearchIcon from '$lib/components/icons/SearchIcon.svelte'
     import CloseIcon from "$lib/components/icons/CloseIcon.svelte";
 
 
@@ -211,7 +210,6 @@
       left: 50%;
       transform: translateX(-50%);
       width: calc(100% - 14px);
-      background-color: red;
       background-color: rgba(255, 255, 255, 0.1);
       border-radius: 14px;
       backdrop-filter: blur(4px);
@@ -245,6 +243,9 @@
         }
         a {
           color: var(--color-text-2);
+          &[aria-current='page'] {
+            color: var(--color-text-1);
+          }
         }
       }
     }
