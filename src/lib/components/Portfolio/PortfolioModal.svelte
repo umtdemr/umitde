@@ -97,7 +97,7 @@
                     {/each}
                 </div>
                 <p class="portfolio_modal__info--content">
-                    {data.description}
+                    {@html data.description}
                 </p>
             </div>
         </div>
