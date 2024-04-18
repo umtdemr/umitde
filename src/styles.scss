@@ -80,6 +80,7 @@ button {
   gap: 10px;
   position: relative;
   margin-top: 10px;
+  flex-wrap: wrap;
   .tag_item {
     padding: 5px 10px;
     border-radius: 20px;
