@@ -1,20 +1,8 @@
 {
   "items": [
     {
-      "title": "Hierapi",
-      "description": "Lorem ipsum dolor sit amet consectetur. Venenatis imperdiet neque lectus sapien morbi mattis massa viverra molestie. Tristique integer gravida ut ullamcorper ac tincidunt sit nulla varius. Id ultrices facilisi amet tempor. Eu non ultrices tortor vel. Volutpat facilisis risus leo varius egestas. At nam ut congue dictum vitae lobortis varius pulvinar. Ut id odio massa suscipit integer malesuada lectus. Sit nulla etiam aenean ut. Cursus ornare ornare eget interdum in leo.\n                Mauris auctor lacinia blandit lacinia fringilla mauris pharetra. Sed purus proin feugiat duis nulla dui. Quam tellus suspendisse neque enim quis nullam tortor. Non sed dictumst nulla pulvinar placerat tortor tincidunt nunc. Egestas non dictum adipiscing lacus mi. Aliquam sit dictumst sed porttitor volutpat ornare et. Orci rhoncus suscipit pharetra id.",
-      "tags": ["e-commerce", "vue js", "django"],
-      "images": [
-        {
-          "url": "hierapi.jpg",
-          "alt": "Hierapi, an e-commerce app",
-          "slug": "hierapi"
-        }
-      ]
-    },
-    {
       "title": "Apeiros",
-      "description": "Lorem ipsum dolor sit amet consectetur. Venenatis imperdiet neque lectus sapien morbi mattis massa viverra molestie. Tristique integer gravida ut ullamcorper ac tincidunt sit nulla varius. Id ultrices facilisi amet tempor. Eu non ultrices tortor vel. Volutpat facilisis risus leo varius egestas. At nam ut congue dictum vitae lobortis varius pulvinar. Ut id odio massa suscipit integer malesuada lectus. Sit nulla etiam aenean ut. Cursus ornare ornare eget interdum in leo.\n                Mauris auctor lacinia blandit lacinia fringilla mauris pharetra. Sed purus proin feugiat duis nulla dui. Quam tellus suspendisse neque enim quis nullam tortor. Non sed dictumst nulla pulvinar placerat tortor tincidunt nunc. Egestas non dictum adipiscing lacus mi. Aliquam sit dictumst sed porttitor volutpat ornare et. Orci rhoncus suscipit pharetra id.",
+      "description": "Apeiros is a digital whiteboard app I worked on to help teams and clients brainstorm ideas together online. It's designed to be user-friendly, letting everyone throw ideas around and sketch out concepts. Working on this project, I focused on creating the structure and making the canvas feel smooth and keeping the app running fast, no matter how many ideas were flying around. It was a great experience figuring out how to build something that could bring people's creative processes together, even when they're miles apart.<br /><br />The most challenging part of developing Apeiros was definitely getting the geometry right. Working with shapes and making sure everything aligned perfectly on the canvas required a lot of precision and testing. But in the end, I got better at geometry too.",
       "tags": ["react js", "node js"],
       "images": [
         {
@@ -26,7 +14,7 @@
     },
     {
       "title": "Person Alarm",
-      "description": "Lorem ipsum dolor sit amet consectetur. Venenatis imperdiet neque lectus sapien morbi mattis massa viverra molestie. Tristique integer gravida ut ullamcorper ac tincidunt sit nulla varius. Id ultrices facilisi amet tempor. Eu non ultrices tortor vel. Volutpat facilisis risus leo varius egestas. At nam ut congue dictum vitae lobortis varius pulvinar. Ut id odio massa suscipit integer malesuada lectus. Sit nulla etiam aenean ut. Cursus ornare ornare eget interdum in leo.\n                Mauris auctor lacinia blandit lacinia fringilla mauris pharetra. Sed purus proin feugiat duis nulla dui. Quam tellus suspendisse neque enim quis nullam tortor. Non sed dictumst nulla pulvinar placerat tortor tincidunt nunc. Egestas non dictum adipiscing lacus mi. Aliquam sit dictumst sed porttitor volutpat ornare et. Orci rhoncus suscipit pharetra id.",
+      "description": "For a class project at university, I built something called Person Alarm. It’s basically a camera that keeps an eye on risky areas. Using an ESP32-CAM and Python (open cv, yolo v3, django), it watches for anyone approaching where they shouldn’t be. When it detects movement, it snaps a photo and checks if there’s a person in it. If there is, it quickly sends an alert to my phone. It was a fun challenge mixing electronics with code.",
       "tags": ["embedded systems", "django", "c++"],
       "images": [
         {
@@ -43,7 +31,7 @@
     },
     {
       "title": "Umitde.com",
-      "description": "Lorem ipsum dolor sit amet consectetur. Venenatis imperdiet neque lectus sapien morbi mattis massa viverra molestie. Tristique integer gravida ut ullamcorper ac tincidunt sit nulla varius. Id ultrices facilisi amet tempor. Eu non ultrices tortor vel. Volutpat facilisis risus leo varius egestas. At nam ut congue dictum vitae lobortis varius pulvinar. Ut id odio massa suscipit integer malesuada lectus. Sit nulla etiam aenean ut. Cursus ornare ornare eget interdum in leo.\n                Mauris auctor lacinia blandit lacinia fringilla mauris pharetra. Sed purus proin feugiat duis nulla dui. Quam tellus suspendisse neque enim quis nullam tortor. Non sed dictumst nulla pulvinar placerat tortor tincidunt nunc. Egestas non dictum adipiscing lacus mi. Aliquam sit dictumst sed porttitor volutpat ornare et. Orci rhoncus suscipit pharetra id.",
+      "description": "I built my personal website using SvelteKit, mainly to keep all my blog posts in one spot and show my works. It’s a simple, clean site where I can share my thoughts. It was fun learning more about SvelteKit.<br /><br />I also designed it by myself because of the several reasons. Feel free to use. It's open source!",
       "tags": ["SvelteKit"],
       "images": [
         {
@@ -54,8 +42,20 @@
       ]
     },
     {
+      "title": "Hierapi",
+      "description": "Hierapi was a multi language e-commerce website I developed from scratch for a company that is based in Turkey. It was my first freelance job and it took almost 6 months to complete. I coded it with Django and Vue js.",
+      "tags": ["e-commerce", "vue js", "django"],
+      "images": [
+        {
+          "url": "hierapi.jpg",
+          "alt": "Hierapi, an e-commerce app",
+          "slug": "hierapi"
+        }
+      ]
+    },
+    {
       "title": "Petra Coffee",
-      "description": "Lorem ipsum dolor sit amet consectetur. Venenatis imperdiet neque lectus sapien morbi mattis massa viverra molestie. Tristique integer gravida ut ullamcorper ac tincidunt sit nulla varius. Id ultrices facilisi amet tempor. Eu non ultrices tortor vel. Volutpat facilisis risus leo varius egestas. At nam ut congue dictum vitae lobortis varius pulvinar. Ut id odio massa suscipit integer malesuada lectus. Sit nulla etiam aenean ut. Cursus ornare ornare eget interdum in leo.\n                Mauris auctor lacinia blandit lacinia fringilla mauris pharetra. Sed purus proin feugiat duis nulla dui. Quam tellus suspendisse neque enim quis nullam tortor. Non sed dictumst nulla pulvinar placerat tortor tincidunt nunc. Egestas non dictum adipiscing lacus mi. Aliquam sit dictumst sed porttitor volutpat ornare et. Orci rhoncus suscipit pharetra id.",
+      "description": "I designed a website for Petra Coffee (based in Turkey) using shopify.",
       "tags": ["Shopify"],
       "images": [
         {
@@ -67,7 +67,7 @@
     },
     {
       "title": "Mimic Robot",
-      "description": "Lorem ipsum dolor sit amet consectetur. Venenatis imperdiet neque lectus sapien morbi mattis massa viverra molestie. Tristique integer gravida ut ullamcorper ac tincidunt sit nulla varius. Id ultrices facilisi amet tempor. Eu non ultrices tortor vel. Volutpat facilisis risus leo varius egestas. At nam ut congue dictum vitae lobortis varius pulvinar. Ut id odio massa suscipit integer malesuada lectus. Sit nulla etiam aenean ut. Cursus ornare ornare eget interdum in leo.\n                Mauris auctor lacinia blandit lacinia fringilla mauris pharetra. Sed purus proin feugiat duis nulla dui. Quam tellus suspendisse neque enim quis nullam tortor. Non sed dictumst nulla pulvinar placerat tortor tincidunt nunc. Egestas non dictum adipiscing lacus mi. Aliquam sit dictumst sed porttitor volutpat ornare et. Orci rhoncus suscipit pharetra id.",
+      "description": "In high school, I helped creating a project called Mimic Robot for a TÜBİTAK competition. It's a robot made from wood, using an Arduino and a Windows Kinect camera to copy human gestures.",
       "tags": ["embedded systems"],
       "images": [
         {
@@ -79,7 +79,7 @@
     },
     {
       "title": "Smile Mirror",
-      "description": "Lorem ipsum dolor sit amet consectetur. Venenatis imperdiet neque lectus sapien morbi mattis massa viverra molestie. Tristique integer gravida ut ullamcorper ac tincidunt sit nulla varius. Id ultrices facilisi amet tempor. Eu non ultrices tortor vel. Volutpat facilisis risus leo varius egestas. At nam ut congue dictum vitae lobortis varius pulvinar. Ut id odio massa suscipit integer malesuada lectus. Sit nulla etiam aenean ut. Cursus ornare ornare eget interdum in leo.\n                Mauris auctor lacinia blandit lacinia fringilla mauris pharetra. Sed purus proin feugiat duis nulla dui. Quam tellus suspendisse neque enim quis nullam tortor. Non sed dictumst nulla pulvinar placerat tortor tincidunt nunc. Egestas non dictum adipiscing lacus mi. Aliquam sit dictumst sed porttitor volutpat ornare et. Orci rhoncus suscipit pharetra id.",
+      "description": "For a high school project at a TÜBİTAK competition, I worked on a project called Smile Mirror. It’s a mirror that takes a selfie when you smile. I built it with c++ and open cv to recognize smiles and automatically capture photos",
       "tags": ["embedded systems"],
       "images": [
         {

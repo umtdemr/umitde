@@ -100,6 +100,14 @@
 				margin-top: 2rem;
 			}
 		}
+		@media screen and (max-width: 790px) {
+			.section_desc {
+				p {
+					margin-top: 1.2rem;
+				}
+			}
+
+		}
 	}
 	.journey {
 		margin-top: 75px;
@@ -124,6 +132,9 @@
 			display: flex;
 			flex-direction: column;
 			gap: 50px;
+			@media screen and (max-width: 790px) {
+				margin-top: 30px;
+			}
 		}
 		&__item {
 			position: relative;

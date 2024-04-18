@@ -26,5 +26,10 @@
           font-size: 0.812rem;
           margin-top: 5px;
         }
+      @media screen and (max-width: 790px) {
+        &__title {
+          font-size: 1.4rem;
+        }
+      }
     }
 </style>

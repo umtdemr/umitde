@@ -80,6 +80,7 @@ button {
   gap: 10px;
   position: relative;
   margin-top: 10px;
+  flex-wrap: wrap;
   .tag_item {
     padding: 5px 10px;
     border-radius: 20px;
@@ -87,6 +88,11 @@ button {
     color: var(--color-text-1);
     &.purple {
       background-color: #4F55ED;
+    }
+  }
+  @media screen and (max-width: 790px) {
+    .tag_item {
+      font-size: 0.65rem;
     }
   }
 }
@@ -113,5 +119,23 @@ pre {
   }
   p {
     margin: 30px 0;
+  }
+  @media screen and (max-width: 790px) {
+    h1 {
+      font-size: 1.4rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .section_title {
+    font-size: 2rem;
+  }
+  .section_desc {
+    font-size: 1.1rem;
+    line-height: 1.4rem;
   }
 }

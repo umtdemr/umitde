@@ -11,7 +11,6 @@ export const prerender = true;
 
 const { siteUrl } = website;
 
-console.log(process.env)
 const render = (pages: Pages, posts: SitemapPost[]) => `<?xml version="1.0" encoding="UTF-8" ?>
 <urlset
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -40,7 +39,7 @@ const render = (pages: Pages, posts: SitemapPost[]) => `<?xml version="1.0" enco
         const { lastUpdated, slug } = element;
         return `
 	<url>
-	  <loc>${siteUrl}/${slug}</loc>
+	  <loc>${siteUrl}/blog/${slug}</loc>
 		<lastmod>${`${new Date(lastUpdated).toISOString()}`}</lastmod>
 	</url>
 	`;
