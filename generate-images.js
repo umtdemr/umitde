@@ -84,8 +84,14 @@ async function generatePostImages() {
 
     const contentImageMetaPromises = [];
     for (const postImage of postImages) {
+        if (!postImage.contentImages) {
+            continue
+        }
         const { slug } = postImage
         for (const contentImage of postImage.contentImages) {
+            if (!contentImage) {
+                continue
+            }
             const { image } = contentImage;
             const source = path.join(__dirname, 'src/lib/assets/blog/', slug, image);
             contentImageMetaPromises.push(generateImageMeta(source));

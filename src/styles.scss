@@ -130,6 +130,13 @@ pre {
   }
 }
 
+.bullet-title {
+  &:before {
+    content: "• ";
+  }
+}
+
+
 @media screen and (max-width: 790px) {
   .section_title {
     font-size: 2rem;

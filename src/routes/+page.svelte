@@ -30,9 +30,7 @@
 	<meta property="twitter:image:type" content={'image/' + format} />
 </svelte:head>
 
-<section>
-	<PostList data={data} />
-</section>
+<PostList data={data} />
 
 <style lang="scss">
 

@@ -16,6 +16,7 @@
 
 <style lang="scss">
     .post_item {
+        margin-bottom: 45px;
         &__title {
           color: var(--color-text-1);
           font-size: 1.875rem;

@@ -5,6 +5,8 @@
 </script>
 
 
+<section class="article_list">
 {#each data?.posts as post}
     <PostItem post={post} />
 {/each}
+</section>
