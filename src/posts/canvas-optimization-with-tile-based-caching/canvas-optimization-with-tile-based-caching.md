@@ -23,7 +23,7 @@ postImages:
 
 </script>
 
-I've seen that some canvas applications use individual caches for shapes, which leads to the creation of numerous canvas instances.
+It's common to use individual caches for the shapes in the canvas, which leads to the creation of numerous canvas instances.
 I find that this practice can negatively impact performance. Creating individual caches and drawing them as images often becomes more expensive regarding performance than drawing the shapes directly.
 
 Here is an example from <ExternalLink link="https://excalidraw.com" text="Excalidraw" />, which is a great tool but lacks tile-based caching.
@@ -40,7 +40,7 @@ In other words, tile-based caching divides the main canvas into smaller pieces c
 
 
 Let's say we have a `1920x800` canvas. And we want to render and cache the shapes in `500x500` tiles. 
-So we need 4 tiles in X direction and 2 tiles in Y direction. That means we need, 8 tiles to cache the main canvas.
+So we need 4 tiles in X direction and 2 tiles in Y direction. That means we need 8 tiles to cache the main canvas.
 To render the shapes, we need to find intersected shapes for each tile and render them on tiles.
 Now we can render the tiles on the main canvas. That's it.
 
@@ -87,7 +87,7 @@ In the above example, I didn't consider the zoom level but please you do.
 <BulletTitle text="Be careful about retina display" htmlTag="h3" />
 
 If you've enabled <ExternalLink text="Retina display" link="https://gist.github.com/callumlocke/cc258a193839691f60dd" /> on your canvas,
-make sure you've enabled Retina displays on tile canvases. As an example, if your default tile sizes are 500x500 and the `devicePixelRatio` of the user
+make sure you've enabled Retina displays on tile canvases as well. As an example, if your default tile sizes are 500x500 and the `devicePixelRatio` of the user
 is 2, you need to change the tile sizes to `1000x1000` for that user.
 
 <BulletTitle text="Getting intersecting shapes for tiles" htmlTag="h3" />
