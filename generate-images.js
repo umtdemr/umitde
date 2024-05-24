@@ -4,7 +4,7 @@ import path from 'path';
 import {makeDirectory} from "./src/lib/utils/file.js";
 import {metadata, dominantColour, lowResolutionPlaceholder} from "./src/lib/utils/image.js";
 const BLOG_PATH = 'src/posts'
-const PORTFOLIO_PATH = 'src/routes/portfolio/portfolioData.json';
+const PORTFOLIO_PATH = 'src/routes/works/portfolioData.json';
 
 const __dirname = path.resolve();
 const formats = ['avif', 'webp', 'auto'];

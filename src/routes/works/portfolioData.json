@@ -88,6 +88,33 @@
           "slug": "smile-mirror"
         }
       ]
+    },
+    {
+      "title": "Spor Istanbul CLI",
+      "description": "The GYM I go to requires booking spots three days ahead. Manually checking availability makes me sick, and forgetting to do so often leads to missed workouts. So I've built a CLI app with Golang to automate this process. It checks the empty spot periodically and whenever it finds an empty spot, plays an alarm to warn me.",
+      "tags": ["go", "cli"],
+      "images": [
+        {
+          "url": "spor-istanbul-cli-1.png",
+          "alt": "Spor Istanbul CLI auth screen",
+          "slug": "spor-istanbul-cli-1"
+        },
+        {
+          "url": "spor-istanbul-cli-2.png",
+          "alt": "Spor Istanbul CLI subscription chooser screen",
+          "slug": "spor-istanbul-cli-2"
+        },
+        {
+          "url": "spor-istanbul-cli-3.png",
+          "alt": "Spor Istanbul CLI session chooser screen",
+          "slug": "spor-istanbul-cli-3"
+        },
+        {
+          "url": "spor-istanbul-cli-4.jpg",
+          "alt": "Spor Istanbul CLI wait screen",
+          "slug": "spor-istanbul-cli-4"
+        }
+      ]
     }
   ]
 }
