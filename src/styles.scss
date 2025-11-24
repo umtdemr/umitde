@@ -7,6 +7,9 @@
   --color-text-2: #C1C1C1;
   --color-link: #8ab4f8;
   --color-modal-dark-bg: #2A2A2A;
+
+  --shiki-bg: #24292e;
+  --shiki-fg: #e1e4e8;
 }
 
 @font-face {
@@ -119,6 +122,28 @@ pre {
   }
   p {
     margin: 30px 0;
+  }
+  ul, ol {
+    margin-bottom: 20px;
+    padding-left: 30px;
+    line-height: 1.8;
+    li {
+      margin: 8px 0;
+    }
+  }
+  ul {
+    list-style-type: disc;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  code:not(pre code) {
+    background-color: var(--shiki-bg);
+    color: var(--shiki-fg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   }
   @media screen and (max-width: 790px) {
     h1 {
