@@ -1,17 +1,22 @@
 export async function load() {
     const data = await import('./portfolioData.json');
-    const works = [];
 
-    for (const item of data.items) {
-        const work = {...item};
-        for (let i = 0; i < item.images.length; i++) {
-            const image = item.images[i]
-            const imageData = await import(`../../lib/generated/works/${image.slug}.ts`);
-            item.images[i].imageData = imageData.default;
-        }
-    }
+    // Load all images in parallel without blocking
+    const itemsPromise = Promise.all(
+        data.items.map(async (item) => {
+            const imagePromises = item.images.map(async (image) => {
+                const imageData = await import(`../../lib/generated/works/${image.slug}.ts`);
+                return { ...image, imageData: imageData.default };
+            });
+            
+            return {
+                ...item,
+                images: await Promise.all(imagePromises)
+            };
+        })
+    );
 
     return {
-        ...data
+        items: itemsPromise
     }
 }
