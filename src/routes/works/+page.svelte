@@ -26,9 +26,16 @@
     <h2 class="section_title">Works</h2>
     <p class="section_desc">A list of projects I've worked on or I'm working on</p>
     <div class="portfolio_list">
-        {#each data.items as workItem}
-            <PortfolioItem data={workItem} />
-        {/each}
+        {#await data.items}
+            <div class="portfolio_skeleton"></div>
+            <div class="portfolio_skeleton"></div>
+            <div class="portfolio_skeleton"></div>
+            <div class="portfolio_skeleton"></div>
+        {:then items}
+            {#each items as workItem}
+                <PortfolioItem data={workItem} />
+            {/each}
+        {/await}
     </div>
 </section>
 
@@ -43,6 +50,28 @@
       user-select: none;
       @media screen and (max-width: 790px) {
         grid-template-columns: 1fr;
+      }
+    }
+
+    .portfolio_skeleton {
+      height: 405px;
+      border-radius: 33px;
+      background: linear-gradient(
+        90deg,
+        var(--color-dark-2) 25%,
+        var(--color-dark-3) 50%,
+        var(--color-dark-2) 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
       }
     }
 </style>
