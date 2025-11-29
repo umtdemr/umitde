@@ -13,6 +13,11 @@
 
     let imageWidth: number;
 
+    // Swipe/drag handling
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isDragging = false;
+
     const dispatch = createEventDispatcher();
 
     function setImageSizes() {
@@ -53,6 +58,55 @@
             status: false
         })
     }
+
+    function handleTouchStart(e: TouchEvent) {
+        touchStartX = e.touches[0].clientX;
+        isDragging = true;
+    }
+
+    function handleTouchMove(e: TouchEvent) {
+        if (!isDragging) return;
+        touchEndX = e.touches[0].clientX;
+    }
+
+    function handleTouchEnd() {
+        if (!isDragging) return;
+        handleSwipeEnd();
+    }
+
+    function handleMouseDown(e: MouseEvent) {
+        touchStartX = e.clientX;
+        isDragging = true;
+    }
+
+    function handleMouseMove(e: MouseEvent) {
+        if (!isDragging) return;
+        touchEndX = e.clientX;
+    }
+
+    function handleMouseUp() {
+        if (!isDragging) return;
+        handleSwipeEnd();
+    }
+
+    function handleSwipeEnd() {
+        isDragging = false;
+        
+        const swipeDistance = touchStartX - touchEndX;
+        const minSwipeDistance = 50; // minimum distance for a swipe
+
+        if (Math.abs(swipeDistance) > minSwipeDistance) {
+            if (swipeDistance > 0) {
+                handlePageSwitch(1);
+            } else {
+                handlePageSwitch(-1);
+            }
+        }
+        
+        touchStartX = 0;
+        touchEndX = 0;
+    }
+
     onMount(() => {
         setImageSizes()
         window.addEventListener('resize', handleWindowResize)
@@ -66,7 +120,17 @@
 <Modal on:closeModal={handleCloseModal}>
     <div class="portfolio_modal">
         <div class="content">
-            <div class="portfolio_modal__img_wrapper" bind:this={imageListWrapper}>
+            <div 
+                class="portfolio_modal__img_wrapper" 
+                bind:this={imageListWrapper}
+                on:touchstart={handleTouchStart}
+                on:touchmove={handleTouchMove}
+                on:touchend={handleTouchEnd}
+                on:mousedown={handleMouseDown}
+                on:mousemove={handleMouseMove}
+                on:mouseup={handleMouseUp}
+                on:mouseleave={handleMouseUp}
+            >
                 <div class="image_list" bind:this={imageList}>
                     {#each data.images as image, index}
                         <img class="" src={image.imageData.src} alt={image.imageData.src} data-id={index}/>
@@ -132,6 +196,13 @@
 
       &__img_wrapper {
         position: relative;
+        overflow: hidden;
+        border-bottom-left-radius: 33px;
+        border-top-left-radius: 33px;
+        cursor: grab;
+        &:active {
+          cursor: grabbing;
+        }
         .image_list {
           display: flex;
           transition: 300ms all;
@@ -143,6 +214,8 @@
           border-bottom-left-radius: 33px;
           border-top-left-radius: 33px;
           max-width: unset;
+          user-select: none;
+          pointer-events: none;
         }
       }
       &__info {
