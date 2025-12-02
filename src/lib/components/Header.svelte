@@ -24,6 +24,11 @@
 
     function toggleMobileMenu(state) {
         showMobileMenu = state;
+        if (state) {
+            document.querySelector("body").classList.add("modal--opened");
+        } else {
+            document.querySelector("body").classList.remove("modal--opened");
+        }
     }
 
     function handleMenuButtonClick() {
@@ -119,7 +124,7 @@
       border-radius: 14px;
       backdrop-filter: blur(4px);
       z-index: 99;
-      width: calc(100% - 14px);
+      width: 800px;
       margin: 25px auto 0 auto;
       display: flex;
       align-items: center;
@@ -128,6 +133,9 @@
         margin-top: 25px;
         left: 50%;
         transform: translateX(-50%);
+      }
+      @media screen and (max-width: 800px) {
+        width: calc(100% - 14px);
       }
     }
     .header_bg {
