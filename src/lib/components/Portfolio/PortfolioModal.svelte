@@ -17,6 +17,7 @@
     let touchStartX = 0;
     let touchEndX = 0;
     let isDragging = false;
+    let currentOffset = 0;
 
     const dispatch = createEventDispatcher();
 
@@ -37,7 +38,14 @@
     }
 
     function handlePageTransform() {
+        imageList.style.transition = 'transform 300ms';
         imageList.style.transform = `translateX(-${currentImageIdx * imageWidth}px)`;
+    }
+
+    function updateDragTransform(offset: number) {
+        imageList.style.transition = 'none';
+        const baseOffset = currentImageIdx * imageWidth;
+        imageList.style.transform = `translateX(-${baseOffset - offset}px)`;
     }
 
     function handlePageSwitch(count: number) {
@@ -61,12 +69,16 @@
 
     function handleTouchStart(e: TouchEvent) {
         touchStartX = e.touches[0].clientX;
+        touchEndX = e.touches[0].clientX;
         isDragging = true;
+        currentOffset = 0;
     }
 
     function handleTouchMove(e: TouchEvent) {
         if (!isDragging) return;
         touchEndX = e.touches[0].clientX;
+        currentOffset = touchEndX - touchStartX;
+        updateDragTransform(currentOffset);
     }
 
     function handleTouchEnd() {
@@ -76,12 +88,16 @@
 
     function handleMouseDown(e: MouseEvent) {
         touchStartX = e.clientX;
+        touchEndX = e.clientX;
         isDragging = true;
+        currentOffset = 0;
     }
 
     function handleMouseMove(e: MouseEvent) {
         if (!isDragging) return;
         touchEndX = e.clientX;
+        currentOffset = touchEndX - touchStartX;
+        updateDragTransform(currentOffset);
     }
 
     function handleMouseUp() {
@@ -93,18 +109,22 @@
         isDragging = false;
         
         const swipeDistance = touchStartX - touchEndX;
-        const minSwipeDistance = 50; // minimum distance for a swipe
+        const minSwipeDistance = 50;
+        const swipeThreshold = imageWidth * 0.3; // %30 kaydırırsa değişsin
 
-        if (Math.abs(swipeDistance) > minSwipeDistance) {
-            if (swipeDistance > 0) {
-                handlePageSwitch(1);
-            } else {
-                handlePageSwitch(-1);
+        if (Math.abs(swipeDistance) > Math.max(minSwipeDistance, swipeThreshold)) {
+            if (swipeDistance > 0 && currentImageIdx < data.images.length - 1) {
+                currentImageIdx++;
+            } else if (swipeDistance < 0 && currentImageIdx > 0) {
+                currentImageIdx--;
             }
         }
         
+        handlePageTransform();
+        
         touchStartX = 0;
         touchEndX = 0;
+        currentOffset = 0;
     }
 
     onMount(() => {
@@ -205,14 +225,11 @@
         }
         .image_list {
           display: flex;
-          transition: 300ms all;
         }
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-bottom-left-radius: 33px;
-          border-top-left-radius: 33px;
           max-width: unset;
           user-select: none;
           pointer-events: none;
