@@ -9,7 +9,7 @@ const data = {
   width,
   height,
   src,
-  alt: 'my new websites homepage on mobile',
+  alt: 'a terminal comparison. there is iterm2 on the left. there is wezterm on the right.',
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },
     { srcset: srcsetwebp, type: 'image/webp' },
