@@ -21,7 +21,8 @@ const config = {
 	preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
 
 	kit: {
-		adapter: adapter(),
+		// unknown URLs get 404.html, which renders src/routes/+error.svelte inside the site shell
+		adapter: adapter({ fallback: '404.html' }),
 		// sitemap.xml is not linked from any page, so the crawler needs it as an explicit entry
 		prerender: {
 			entries: ['*', '/sitemap.xml']
