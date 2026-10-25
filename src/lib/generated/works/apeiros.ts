@@ -8,7 +8,7 @@ const data = {
   slug: 'apeiros',
   width,
   height,
-  alt: 'Apeiros',
+  alt: 'apeiros',
   src,
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },

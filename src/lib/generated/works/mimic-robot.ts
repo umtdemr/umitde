@@ -8,7 +8,7 @@ const data = {
   slug: 'mimic-robot',
   width,
   height,
-  alt: 'Mimic Robot',
+  alt: 'mimic-robot',
   src,
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },

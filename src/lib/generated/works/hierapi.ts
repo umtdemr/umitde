@@ -8,7 +8,7 @@ const data = {
   slug: 'hierapi',
   width,
   height,
-  alt: 'Hierapi, an e-commerce app',
+  alt: 'hierapi',
   src,
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },

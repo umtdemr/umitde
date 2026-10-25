@@ -8,7 +8,7 @@ const data = {
   slug: 'smile-mirror',
   width,
   height,
-  alt: 'Smile mirror',
+  alt: 'smile-mirror',
   src,
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },

@@ -8,7 +8,7 @@ const data = {
   slug: 'umitde',
   width,
   height,
-  alt: 'Umitde.com',
+  alt: 'umitde',
   src,
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },

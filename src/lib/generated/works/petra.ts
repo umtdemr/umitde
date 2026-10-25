@@ -8,7 +8,7 @@ const data = {
   slug: 'petra',
   width,
   height,
-  alt: 'Petra coffee roasting',
+  alt: 'petra',
   src,
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },

@@ -4,7 +4,7 @@ import path from 'path';
 import { makeDirectory } from './src/lib/utils/file.js';
 import { metadata, dominantColour, lowResolutionPlaceholder } from './src/lib/utils/image.js';
 const BLOG_PATH = 'src/posts';
-const PORTFOLIO_PATH = 'src/routes/works/portfolioData.json';
+const PORTFOLIO_ASSETS_PATH = 'src/lib/assets/works';
 
 const __dirname = path.resolve();
 const formats = ['avif', 'webp', 'auto'];
@@ -183,10 +183,15 @@ export { data as default };
 }
 
 async function generatePortfolioImages() {
-	const location = path.join(__dirname, PORTFOLIO_PATH);
-	const file = fs.readFileSync(location, { encoding: 'utf-8' });
-	const data = JSON.parse(file);
-	const images = data.items.map((item) => item.images).flat();
+	// every image in the works assets folder; alt text is set where the image is used (src/lib/data/projects.ts)
+	const location = path.join(__dirname, PORTFOLIO_ASSETS_PATH);
+	const images = fs
+		.readdirSync(location)
+		.filter((file) => /\.(jpe?g|png|webp)$/i.test(file))
+		.map((url) => {
+			const slug = path.parse(url).name;
+			return { url, slug, alt: slug };
+		});
 
 	const imageMetaPromises = images.map(async (element) => {
 		const { url } = element;

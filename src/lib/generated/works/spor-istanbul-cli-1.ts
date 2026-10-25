@@ -8,7 +8,7 @@ const data = {
   slug: 'spor-istanbul-cli-1',
   width,
   height,
-  alt: 'Spor Istanbul CLI auth screen',
+  alt: 'spor-istanbul-cli-1',
   src,
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },

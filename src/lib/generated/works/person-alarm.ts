@@ -8,7 +8,7 @@ const data = {
   slug: 'person-alarm',
   width,
   height,
-  alt: 'Person Alarm',
+  alt: 'person-alarm',
   src,
   sources: [
     { srcset: srcsetavif, type: 'image/avif' },
