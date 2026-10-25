@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import LazyToy from './LazyToy.svelte';
 
 vi.mock('./registry', () => ({
-	toyLoaders: { tiles: () => import('./__fixtures__/Loaded.svelte') }
+	toyLoaders: { eskiz: () => import('./__fixtures__/Loaded.svelte') }
 }));
 
 const info = createRawSnippet(() => ({ render: () => '<p>info text</p>' }));
@@ -36,7 +36,7 @@ describe('LazyToy', () => {
 
 	it('shows the placeholder and info until the toy scrolls near', async () => {
 		const observers = stubIntersectionObserver();
-		const { container } = render(LazyToy, { name: 'tiles', aspect: '4 / 3', info });
+		const { container } = render(LazyToy, { name: 'eskiz', aspect: '4 / 3', info });
 
 		expect(screen.queryByText('loaded')).toBeNull();
 		expect(screen.getByText('info text')).toBeTruthy();
@@ -58,13 +58,13 @@ describe('LazyToy', () => {
 
 	it('loads right away without IntersectionObserver', async () => {
 		vi.stubGlobal('IntersectionObserver', undefined);
-		render(LazyToy, { name: 'tiles', info });
+		render(LazyToy, { name: 'eskiz', info });
 		expect(await screen.findByText('loaded')).toBeTruthy();
 	});
 
 	it('stays a placeholder when no toy is registered', async () => {
 		vi.stubGlobal('IntersectionObserver', undefined);
-		const { container } = render(LazyToy, { name: 'eskiz', info });
+		const { container } = render(LazyToy, { name: 'spor-cli', info });
 		await new Promise((resolve) => setTimeout(resolve, 0));
 		expect(screen.queryByText('loaded')).toBeNull();
 		expect(container.querySelector('.toy-stage')).not.toBeNull();

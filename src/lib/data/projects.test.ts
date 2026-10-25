@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { toyLoaders } from '$lib/toys/registry';
 import { projects } from './projects';
 
 describe('projects', () => {
@@ -39,5 +40,12 @@ describe('projects', () => {
 			'also:petra-coffee',
 			'also:umitde'
 		]);
+	});
+
+	it('has a registered loader for every toy', () => {
+		const used = projects.flatMap((p) => (p.kind === 'toy' ? [p.toy] : []));
+		for (const name of used) {
+			expect(toyLoaders[name], name).toBeTypeOf('function');
+		}
 	});
 });
