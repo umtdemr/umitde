@@ -30,7 +30,8 @@
 	<meta property="twitter:image:type" content={'image/' + format} />
 </svelte:head>
 
-<PostList data={data} />
+<!-- interim anchor for the header link; the new home page (Task 8) replaces this -->
+<div id="writing"><PostList data={data} /></div>
 
 <style lang="scss">
 

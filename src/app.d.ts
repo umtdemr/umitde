@@ -8,6 +8,11 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+
+	// defined by the Google Analytics snippet in src/lib/analytics.svelte
+	interface Window {
+		gtag?: (...args: unknown[]) => void;
+	}
 }
 
 export {};
