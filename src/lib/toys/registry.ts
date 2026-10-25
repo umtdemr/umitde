@@ -4,5 +4,6 @@ import type { ToyLoader, ToyName } from './types';
 export const toyLoaders: Partial<Record<ToyName, ToyLoader>> = {
 	eskiz: () => import('./EskizBoard.svelte'),
 	'spor-cli': () => import('./SporCli.svelte'),
-	'person-alarm': () => import('./PersonAlarm.svelte')
+	'person-alarm': () => import('./PersonAlarm.svelte'),
+	'mimic-robot': () => import('./MimicRobot.svelte')
 };
