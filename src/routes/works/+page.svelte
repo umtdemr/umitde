@@ -1,79 +1,172 @@
-<script>
-    import PortfolioItem from "$lib/components/Portfolio/PortfolioItem.svelte";
-    import {page} from "$app/stores";
-    import website from "$lib/config/website";
+<script lang="ts">
+	import { page } from '$app/state';
+	import ProjectInfo from '$lib/components/ProjectInfo.svelte';
+	import PostImage from '$lib/components/Post/PostImage.svelte';
+	import website from '$lib/config/website';
+	import { projects } from '$lib/data/projects';
+	import LazyToy from '$lib/toys/LazyToy.svelte';
 
-    export let data;
+	const title = `Works - ${website.siteTitle}`;
+	const description = "A list of projects I've worked on or I'm working on";
+
+	const cards = projects.filter((project) => project.kind !== 'also');
+	const also = projects.filter((project) => project.kind === 'also');
 </script>
 
 <svelte:head>
-    <title>{`Works - ${website.siteTitle}`}</title>
-    <meta name="description" content="A list of projects I've worked on or I'm working on"/>
+	<title>{title}</title>
+	<meta name="description" content={description} />
 
-    <meta property="og:title" content={`Works - ${website.siteTitle}`} />
-    <meta name="og:description" content="A list of projects I've worked on or I'm working on"/>
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={$page.url.href} />
+	<meta property="og:title" content={title} />
+	<meta name="og:description" content={description} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={page.url.href} />
 
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:site" content="@mediumgoal" />
-    <meta property="twitter:creator" content="@mediumgoal" />
-    <meta property="twitter:title" content={`Works - ${website.siteTitle}`} />
-    <meta name="twitter:description" content="A list of projects I've worked on or I'm working on"/>
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:site" content="@mediumgoal" />
+	<meta property="twitter:creator" content="@mediumgoal" />
+	<meta property="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
 </svelte:head>
 
-<section class="portfolio">
-    <!-- interim anchors for the home works links; the new works page (Task 15) replaces this -->
-    <span id="spor-istanbul-cli"></span><span id="person-alarm"></span>
-    <h2 class="section_title">Works</h2>
-    <p class="section_desc">A list of projects I've worked on or I'm working on</p>
-    <div class="portfolio_list">
-        {#await data.items}
-            <div class="portfolio_skeleton"></div>
-            <div class="portfolio_skeleton"></div>
-            <div class="portfolio_skeleton"></div>
-            <div class="portfolio_skeleton"></div>
-        {:then items}
-            {#each items as workItem}
-                <PortfolioItem data={workItem} />
-            {/each}
-        {/await}
-    </div>
-</section>
+<main class="col">
+	<div class="intro">
+		<h1>Works</h1>
+		<p>Side projects, client work and school projects. A few of them are playable.</p>
+	</div>
 
+	<div class="cards">
+		{#each cards as project (project.slug)}
+			{#snippet info()}
+				<ProjectInfo {project} />
+			{/snippet}
+			<article id={project.slug} class:span={project.kind === 'toy' && project.wide}>
+				{#if project.kind === 'toy'}
+					<LazyToy name={project.toy} aspect={project.wide ? '16 / 10' : '4 / 3'} {info} />
+				{:else if project.kind === 'image'}
+					<div class="toy-stage toy-dots image">
+						<PostImage data={{ ...project.image, alt: project.name }} />
+					</div>
+					{@render info()}
+				{/if}
+			</article>
+		{/each}
+	</div>
 
-<style lang="scss">
-    .portfolio_list {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 365px 365px;
-      gap: 28px;
-      margin-top: 65px;
-      user-select: none;
-      @media screen and (max-width: 790px) {
-        grid-template-columns: 1fr;
-      }
-    }
+	<section class="also" aria-labelledby="also-heading">
+		<h2 id="also-heading" class="mono">also</h2>
+		<div class="more">
+			{#each also as project (project.slug)}
+				{#if project.kind === 'also'}
+					<svelte:element this={project.href ? 'a' : 'div'} class="item" href={project.href}>
+						<span class="name">{project.name}</span>
+						<span class="description">{project.description} {project.stack}</span>
+					</svelte:element>
+				{/if}
+			{/each}
+		</div>
+	</section>
+</main>
 
-    .portfolio_skeleton {
-      height: 405px;
-      border-radius: 33px;
-      background: linear-gradient(
-        90deg,
-        var(--color-dark-2) 25%,
-        var(--color-dark-3) 50%,
-        var(--color-dark-2) 75%
-      );
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-    }
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: 48px;
+		padding-top: 24px;
+		padding-bottom: 80px;
+	}
 
-    @keyframes shimmer {
-      0% {
-        background-position: 200% 0;
-      }
-      100% {
-        background-position: -200% 0;
-      }
-    }
+	.intro {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	h1 {
+		margin: 0;
+		font-size: 32px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.intro p {
+		margin: 0;
+		max-width: 560px;
+		font-size: 18px;
+		line-height: 1.65;
+		color: var(--text2);
+	}
+
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 56px 24px;
+	}
+
+	.span {
+		grid-column: 1 / -1;
+	}
+
+	article {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	.image :global(picture),
+	.image :global(img) {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.also {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		padding-top: 32px;
+		border-top: 1px solid var(--rule);
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 13px;
+		font-weight: 400;
+		color: var(--muted);
+	}
+
+	.more {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 20px 32px;
+	}
+
+	.item {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.item .name {
+		font-size: 17px;
+		font-weight: 600;
+	}
+
+	a.item:hover .name {
+		color: var(--accent);
+	}
+
+	.item .description {
+		font-size: 14px;
+		color: var(--text2);
+	}
+
+	@media (max-width: 760px) {
+		.cards,
+		.more {
+			grid-template-columns: 1fr;
+		}
+	}
 </style>
