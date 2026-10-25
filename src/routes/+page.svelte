@@ -40,7 +40,7 @@
 		<h1>Hi, I'm Ümit.</h1>
 		<p>
 			Software engineer in Istanbul. I work with Go, React and Next.js, and write about canvas
-			rendering, backend plumbing and the tools I use. Currently building
+			rendering, Go, the tools I use and, hopefully soon, system design. Currently building
 			<a href="https://eskiz.io">eskiz.io</a>.
 		</p>
 	</section>

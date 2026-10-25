@@ -1,7 +1,8 @@
 <script lang="ts">
 	const links = [
 		{ label: 'github', href: 'https://github.com/umtdemr' },
-		{ label: 'linkedin', href: 'https://linkedin.com/in/umtdemr' }
+		{ label: 'linkedin', href: 'https://linkedin.com/in/umtdemr' },
+		{ label: 'rss', href: '/rss.xml' }
 	];
 </script>
 
