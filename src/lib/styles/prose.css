@@ -59,8 +59,10 @@
 	border-radius: 5px;
 }
 
-/* colours come from shiki; task 10 replaces its theme */
+/* token colours come from the shiki theme in src/lib/shiki/theme.js; shiki inlines its own
+   background, so the themed one needs !important */
 .prose pre {
+	background: var(--code-bg) !important;
 	margin: 4px 0;
 	border-radius: 12px;
 	padding: 22px;
