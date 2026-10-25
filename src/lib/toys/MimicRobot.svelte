@@ -159,6 +159,12 @@
 		fill: #1d1d20;
 	}
 
+	/* the black bar would vanish into the dark stage */
+	:global([data-theme='dark']) .kinect rect {
+		stroke: #4a4a52;
+		stroke-width: 1;
+	}
+
 	.kinect .ir {
 		fill: #c0392b;
 	}

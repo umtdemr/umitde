@@ -6,6 +6,8 @@ declare module '*?as=metadata' {
 	export const width: number;
 	export const height: number;
 	export const format: string;
+	const metadata: { src: string; width: number; height: number; format: string };
+	export default metadata;
 }
 
 // src/lib/generated/**: ?w=…&as=meta:height;src;width

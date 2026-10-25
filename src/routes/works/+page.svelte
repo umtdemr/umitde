@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import Seo from '$lib/components/Seo.svelte';
 	import ProjectInfo from '$lib/components/ProjectInfo.svelte';
 	import website from '$lib/config/website';
 	import { projects, type Project } from '$lib/data/projects';
@@ -14,21 +14,7 @@
 	const also = projects.filter((project): project is Kind<'also'> => project.kind === 'also');
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-
-	<meta property="og:title" content={title} />
-	<meta name="og:description" content={description} />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content={page.url.href} />
-
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:site" content="@mediumgoal" />
-	<meta property="twitter:creator" content="@mediumgoal" />
-	<meta property="twitter:title" content={title} />
-	<meta name="twitter:description" content={description} />
-</svelte:head>
+<Seo {title} {description} />
 
 <main class="col">
 	<div class="intro">

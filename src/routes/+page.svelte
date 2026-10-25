@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
-	import { src, format, width, height } from '$lib/images/header_bg.jpeg?as=metadata';
+	import Seo from '$lib/components/Seo.svelte';
 	import ListItem from '$lib/components/ListItem.svelte';
 	import website from '$lib/config/website';
 	import { projects } from '$lib/data/projects';
@@ -15,28 +14,7 @@
 	const latest = $derived(data.posts.slice(0, HOME_POSTS));
 </script>
 
-<svelte:head>
-	<title>{website.siteTitle}</title>
-	<meta name="description" content="Software engineer based in Istanbul, Turkey" />
-	<meta property="og:title" content={website.siteTitle} />
-	<meta property="og:description" content="Software engineer based in Istanbul, Turkey" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content={page.url.href} />
-	<meta property="og:image" content={src} />
-	<meta property="og:image:width" content={String(width)} />
-	<meta property="og:image:height" content={String(height)} />
-	<meta property="og:image:type" content={'image/' + format} />
-
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:site" content="@mediumgoal" />
-	<meta property="twitter:creator" content="@mediumgoal" />
-	<meta property="twitter:title" content={website.siteTitle} />
-	<meta property="twitter:description" content="Software engineer based in Istanbul, Turkey" />
-	<meta property="twitter:image" content={src} />
-	<meta property="twitter:image:width" content={String(width)} />
-	<meta property="twitter:image:height" content={String(height)} />
-	<meta property="twitter:image:type" content={'image/' + format} />
-</svelte:head>
+<Seo title={website.siteTitle} description="Software engineer based in Istanbul, Turkey" />
 
 <main class="col">
 	<section class="intro">

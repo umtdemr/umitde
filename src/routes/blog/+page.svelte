@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import Seo from '$lib/components/Seo.svelte';
 	import ListItem from '$lib/components/ListItem.svelte';
 	import website from '$lib/config/website';
 	import { formatDate, groupByYear } from '$lib/posts';
@@ -13,14 +13,7 @@
 	const years = $derived(groupByYear(data.posts));
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content={description} />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content={page.url.href} />
-</svelte:head>
+<Seo {title} {description} />
 
 <main class="col">
 	<h1>Writing</h1>

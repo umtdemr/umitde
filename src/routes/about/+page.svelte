@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import Seo from '$lib/components/Seo.svelte';
 	import website from '$lib/config/website';
 	import journey from './journey.json';
 
@@ -12,21 +12,7 @@
 		'I use Typescript, React, Svelte, Node js, Go and Python at my projects.';
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={description} />
-
-	<meta property="og:title" content={title} />
-	<meta name="og:description" content={description} />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content={page.url.href} />
-
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:site" content="@mediumgoal" />
-	<meta property="twitter:creator" content="@mediumgoal" />
-	<meta property="twitter:title" content={title} />
-	<meta name="twitter:description" content={description} />
-</svelte:head>
+<Seo {title} {description} />
 
 <main class="col">
 	<section class="intro">

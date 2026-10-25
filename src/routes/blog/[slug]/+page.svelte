@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import Seo from '$lib/components/Seo.svelte';
 	import { formatDate } from '$lib/posts';
 	import '$lib/styles/prose.css';
 	import type { PageProps } from './$types';
@@ -16,25 +16,17 @@
 	);
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta name="description" content={data.post.description} />
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content={data.post.description} />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content={page.url.href} />
-	<meta property="og:image" content={data.imageData.src} />
-	<meta property="og:image:width" content="760" />
-	<meta property="og:image:height" content="367" />
-	<meta property="og:image:alt" content={data.imageData.alt} />
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:title" content={title} />
-	<meta property="twitter:description" content={data.post.description} />
-	<meta property="twitter:site" content="@mediumgoal" />
-	<meta property="twitter:creator" content="@mediumgoal" />
-	<meta property="twitter:image" content={data.imageData.src} />
-	<meta property="twitter:url" content={page.url.href} />
-</svelte:head>
+<Seo
+	{title}
+	description={data.post.description ?? ''}
+	type="article"
+	image={{
+		src: data.imageData.src,
+		width: data.imageData.width,
+		height: data.imageData.height,
+		alt: data.imageData.alt
+	}}
+/>
 
 <article class="col">
 	<header>
