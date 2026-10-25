@@ -23,6 +23,8 @@
 </svelte:head>
 
 <section class="portfolio">
+    <!-- interim anchors for the home works links; the new works page (Task 15) replaces this -->
+    <span id="spor-istanbul-cli"></span><span id="person-alarm"></span>
     <h2 class="section_title">Works</h2>
     <p class="section_desc">A list of projects I've worked on or I'm working on</p>
     <div class="portfolio_list">
