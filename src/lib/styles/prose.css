@@ -84,16 +84,3 @@
 	border-left: 2px solid var(--rule);
 	color: var(--muted);
 }
-
-/* interactive demos break out of the column by 80px each side */
-.prose .wide {
-	margin-left: -80px;
-	margin-right: -80px;
-}
-
-@media (max-width: 860px) {
-	.prose .wide {
-		margin-left: 0;
-		margin-right: 0;
-	}
-}

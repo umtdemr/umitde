@@ -1,11 +1,12 @@
 import website from '$lib/config/website';
+import type { PostMeta } from '$lib/types';
 import { error } from '@sveltejs/kit';
 
 type Pages = string[];
 type SitemapPost = {
-    lastUpdated: string;
-    slug: string;
-}
+	lastUpdated: string;
+	slug: string;
+};
 
 export const prerender = true;
 
@@ -25,51 +26,55 @@ const render = (pages: Pages, posts: SitemapPost[]) => `<?xml version="1.0" enco
 	>
 
 	${pages
-    .map(
-        (element) => `
+		.map(
+			(element) => `
 	<url>
 	  <loc>${element}</loc>
 		<lastmod>${`${process.env.VITE_BUILD_TIME}`}</lastmod>
-	</url>`,
-    )
-    .join('\n')}
+	</url>`
+		)
+		.join('\n')}
 
 	${posts
-    .map((element) => {
-        const { lastUpdated, slug } = element;
-        return `
+		.map((element) => {
+			const { lastUpdated, slug } = element;
+			return `
 	<url>
 	  <loc>${siteUrl}/blog/${slug}</loc>
 		<lastmod>${`${new Date(lastUpdated).toISOString()}`}</lastmod>
 	</url>
 	`;
-    })
-    .join('')}
+		})
+		.join('')}
 </urlset>`;
 
 export async function GET({ setHeaders }: any) {
-    try {
-        const mdModules = import.meta.glob('../../posts/**/*.md');
-        const posts = await Promise.all(
-            Object.keys(mdModules).map(async (path) => {
-                const slug = path.split('/').at(-2)!;
-                const { metadata } = await mdModules[path]();
-                const { lastUpdated } = metadata;
-                return { lastUpdated, slug };
-            }),
-        );
+	try {
+		const mdModules = import.meta.glob<{ metadata: PostMeta }>('../../posts/**/*.md');
+		const all = await Promise.all(
+			Object.keys(mdModules).map(async (path) => {
+				const slug = path.split('/').at(-2)!;
+				const { metadata } = await mdModules[path]();
+				return {
+					lastUpdated: metadata.lastUpdated ?? metadata.date,
+					slug,
+					published: metadata.published
+				};
+			})
+		);
+		const posts = all.filter((post) => post.published);
 
-        const pagePaths = ['', '/about', '/works'];
-        const pages = pagePaths.map((element) => `${siteUrl}${element}`);
+		const pagePaths = ['', '/about', '/works'];
+		const pages = pagePaths.map((element) => `${siteUrl}${element}`);
 
-        setHeaders({
-            'Cache-Control': 'max-age=0, s-max-age=600',
-            'Content-Type': 'application/xml',
-        });
+		setHeaders({
+			'Cache-Control': 'max-age=0, s-maxage=600',
+			'Content-Type': 'application/xml'
+		});
 
-        return new Response(render(pages, posts));
-    } catch (err: any) {
-        // todo: redirect
-        error(500, err);
-    }
+		return new Response(render(pages, posts));
+	} catch (err: any) {
+		// todo: redirect
+		error(500, err);
+	}
 }
