@@ -4,8 +4,7 @@
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import Header from '$lib/components/Header.svelte'
 	import Analytics from '$lib/analytics.svelte'
-	import './../_reset.scss';
-	import './../styles.scss';
+	import '../app.css';
 	import Logo from "$lib/components/Logo.svelte";
 	import LinkedinIcon from "$lib/components/icons/LinkedinIcon.svelte";
 	import GithubIcon from "$lib/components/icons/GithubIcon.svelte";
