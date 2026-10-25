@@ -76,6 +76,7 @@ describe('toSummaries', () => {
 			title: 'B',
 			description: undefined,
 			date: '2025-11-24T00:00:00.000Z',
+			updated: undefined,
 			tag: 'go',
 			readingMinutes: 3
 		});

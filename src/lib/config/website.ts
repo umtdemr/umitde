@@ -10,7 +10,6 @@ const website = {
 	ogLanguage: 'en_US',
 	siteLanguage: 'en-US',
 	siteTitle: 'Ümit Demir',
-	description: 'hey',
 	siteUrl: PUBLIC_SITE_URL,
 	contactEmail: PUBLIC_CONTACT_EMAIL,
 	githubPage: PUBLIC_GITHUB_PAGE,

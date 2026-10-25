@@ -26,6 +26,7 @@
 		height: data.imageData.height,
 		alt: data.imageData.alt
 	}}
+	article={{ headline: data.post.title, published: data.post.date, modified: data.post.updated }}
 />
 
 <article class="col">

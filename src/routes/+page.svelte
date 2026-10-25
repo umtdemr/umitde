@@ -14,7 +14,10 @@
 	const latest = $derived(data.posts.slice(0, HOME_POSTS));
 </script>
 
-<Seo title={website.siteTitle} description="Software engineer based in Istanbul, Turkey" />
+<Seo
+	title="{website.siteTitle} - Software Engineer"
+	description="Software engineer based in Istanbul, Turkey"
+/>
 
 <main class="col">
 	<section class="intro">

@@ -32,6 +32,8 @@ export type PostSummary = {
 	description?: string;
 	/** ISO timestamp, UTC midnight of the frontmatter date */
 	date: string;
+	/** ISO timestamp of the frontmatter lastUpdated */
+	updated?: string;
 	/** first category, lower-cased */
 	tag: string | null;
 	readingMinutes: number;

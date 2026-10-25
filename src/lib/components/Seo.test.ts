@@ -55,6 +55,31 @@ describe('Seo', () => {
 		expect(meta('og:type')).toBe('article');
 	});
 
+	it('adds article times and BlogPosting structured data for an article', () => {
+		render(Seo, {
+			title: 'Post - Ümit Demir',
+			description: 'About </script> it',
+			type: 'article',
+			article: { headline: 'Post', published: '2024-01-01T00:00:00.000Z' }
+		});
+		expect(meta('article:published_time')).toBe('2024-01-01T00:00:00.000Z');
+		expect(meta('article:modified_time')).toBe('2024-01-01T00:00:00.000Z');
+		const script = document.head.querySelector('script[type="application/ld+json"]');
+		expect(script?.textContent).not.toContain('</script>');
+		const data = JSON.parse(script?.textContent ?? '');
+		expect(data).toMatchObject({
+			'@type': 'BlogPosting',
+			headline: 'Post',
+			description: 'About </script> it',
+			mainEntityOfPage: 'https://umitde.com/blog/x'
+		});
+	});
+
+	it('has no structured data without an article', () => {
+		render(Seo, { title: 'Post', description: 'About it' });
+		expect(document.head.querySelector('script[type="application/ld+json"]')).toBeNull();
+	});
+
 	it('does not name a twitter account', () => {
 		render(Seo, { title: 'Post', description: 'About it' });
 		expect(meta('twitter:site')).toBeUndefined();

@@ -34,6 +34,7 @@ export function toSummaries(
 			title: metadata.title,
 			description: metadata.description,
 			date: new Date(metadata.date).toISOString(),
+			updated: metadata.lastUpdated && new Date(metadata.lastUpdated).toISOString(),
 			tag: metadata.categories?.[0]?.toLowerCase() ?? null,
 			readingMinutes: readingMinutes(raw[path] ?? '')
 		}))
