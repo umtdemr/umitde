@@ -1,6 +1,4 @@
-import apeirosImage from '$lib/generated/works/apeiros';
 import type { ToyName } from '$lib/toys/types';
-import type { ImageData } from '$lib/types';
 
 type Base = {
 	/** anchor id on /works */
@@ -13,11 +11,7 @@ type Base = {
 };
 
 export type Project = Base &
-	(
-		| { kind: 'toy'; toy: ToyName; wide?: boolean }
-		| { kind: 'image'; image: ImageData }
-		| { kind: 'also'; stack: string }
-	);
+	({ kind: 'toy'; toy: ToyName; wide?: boolean } | { kind: 'also'; stack: string });
 
 // order is the works page order
 export const projects: Project[] = [
@@ -65,10 +59,9 @@ export const projects: Project[] = [
 	{
 		slug: 'apeiros',
 		name: 'Apeiros',
-		description:
-			'A team whiteboard. I worked on the canvas structure and performance, and fought a lot of geometry.',
-		kind: 'image',
-		image: apeirosImage
+		description: 'A team whiteboard; I worked on the canvas and its performance.',
+		kind: 'also',
+		stack: 'React · Node.js'
 	},
 	{
 		slug: 'hierapi',

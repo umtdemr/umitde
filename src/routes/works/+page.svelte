@@ -1,16 +1,17 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import ProjectInfo from '$lib/components/ProjectInfo.svelte';
-	import PostImage from '$lib/components/Post/PostImage.svelte';
 	import website from '$lib/config/website';
-	import { projects } from '$lib/data/projects';
+	import { projects, type Project } from '$lib/data/projects';
 	import LazyToy from '$lib/toys/LazyToy.svelte';
 
 	const title = `Works - ${website.siteTitle}`;
 	const description = "A list of projects I've worked on or I'm working on";
 
-	const cards = projects.filter((project) => project.kind !== 'also');
-	const also = projects.filter((project) => project.kind === 'also');
+	type Kind<K extends Project['kind']> = Extract<Project, { kind: K }>;
+
+	const cards = projects.filter((project): project is Kind<'toy'> => project.kind === 'toy');
+	const also = projects.filter((project): project is Kind<'also'> => project.kind === 'also');
 </script>
 
 <svelte:head>
@@ -40,15 +41,8 @@
 			{#snippet info()}
 				<ProjectInfo {project} />
 			{/snippet}
-			<article id={project.slug} class:span={project.kind === 'toy' && project.wide}>
-				{#if project.kind === 'toy'}
-					<LazyToy name={project.toy} aspect={project.wide ? '16 / 10' : '4 / 3'} {info} />
-				{:else if project.kind === 'image'}
-					<div class="toy-stage toy-dots image">
-						<PostImage data={{ ...project.image, alt: project.name }} />
-					</div>
-					{@render info()}
-				{/if}
+			<article id={project.slug} class:span={project.wide}>
+				<LazyToy name={project.toy} aspect={project.wide ? '16 / 10' : '4 / 3'} {info} />
 			</article>
 		{/each}
 	</div>
@@ -57,12 +51,10 @@
 		<h2 id="also-heading" class="mono">also</h2>
 		<div class="more">
 			{#each also as project (project.slug)}
-				{#if project.kind === 'also'}
-					<svelte:element this={project.href ? 'a' : 'div'} class="item" href={project.href}>
-						<span class="name">{project.name}</span>
-						<span class="description">{project.description} {project.stack}</span>
-					</svelte:element>
-				{/if}
+				<svelte:element this={project.href ? 'a' : 'div'} class="item" href={project.href}>
+					<span class="name">{project.name}</span>
+					<span class="description">{project.description} {project.stack}</span>
+				</svelte:element>
 			{/each}
 		</div>
 	</section>
@@ -112,14 +104,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 14px;
-	}
-
-	.image :global(picture),
-	.image :global(img) {
-		display: block;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
 	}
 
 	.also {

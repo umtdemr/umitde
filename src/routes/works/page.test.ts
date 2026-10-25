@@ -5,7 +5,7 @@ import Page from './+page.svelte';
 vi.mock('$app/state', () => ({ page: { url: new URL('http://localhost/works') } }));
 
 describe('works page', () => {
-	it('renders the playable and image cards in order', () => {
+	it('renders only the playable cards, in order', () => {
 		const { container } = render(Page);
 		const cards = [...container.querySelectorAll('.cards > article')];
 		expect(cards.map((card) => card.id)).toEqual([
@@ -13,8 +13,7 @@ describe('works page', () => {
 			'spor-istanbul-cli',
 			'person-alarm',
 			'mimic-robot',
-			'smile-mirror',
-			'apeiros'
+			'smile-mirror'
 		]);
 		expect(cards[0].classList.contains('span')).toBe(true);
 		expect(cards.slice(1).some((card) => card.classList.contains('span'))).toBe(false);
@@ -34,11 +33,10 @@ describe('works page', () => {
 		expect(eskiz.getAttribute('href')).toBe('https://eskiz.io');
 	});
 
-	it('uses the existing apeiros image with the project name as alt', () => {
+	it('has no image cards: Apeiros moved to "also"', () => {
 		const { container } = render(Page);
-		const img = container.querySelector('#apeiros img') as HTMLImageElement;
-		expect(img.getAttribute('alt')).toBe('Apeiros');
-		expect(img.getAttribute('src')).toBeTruthy();
+		expect(container.querySelector('#apeiros')).toBeNull();
+		expect(container.querySelector('.cards img')).toBeNull();
 	});
 
 	it('lists the rest under "also"', () => {
@@ -46,13 +44,14 @@ describe('works page', () => {
 		const also = screen.getByRole('region', { name: 'also' });
 		const items = [...also.querySelectorAll('.more > *')];
 		expect(items.map((item) => item.querySelector('.name')?.textContent)).toEqual([
+			'Apeiros',
 			'Hierapi',
 			'Petra Coffee',
 			'umitde.com'
 		]);
-		expect(items[0].tagName).toBe('DIV');
+		expect(items[1].tagName).toBe('DIV');
 		expect(within(also).getByRole('link').getAttribute('href')).toBe('/');
-		expect(items[0].textContent).toContain(
+		expect(items[1].textContent).toContain(
 			'Multi-language e-commerce, my first freelance job. Vue · Django'
 		);
 	});

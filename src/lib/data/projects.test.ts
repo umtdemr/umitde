@@ -34,7 +34,7 @@ describe('projects', () => {
 			'toy:person-alarm',
 			'toy:mimic-robot',
 			'toy:smile-mirror',
-			'image:apeiros',
+			'also:apeiros',
 			'also:hierapi',
 			'also:petra-coffee',
 			'also:umitde'
