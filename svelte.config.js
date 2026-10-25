@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex, escapeSvelte } from "mdsvex";
 import { createHighlighter } from "shiki";
@@ -26,7 +26,11 @@ const config = {
 	preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		// sitemap.xml is not linked from any page, so the crawler needs it as an explicit entry
+		prerender: {
+			entries: ['*', '/sitemap.xml']
+		}
 	}
 };
 
