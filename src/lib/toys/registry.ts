@@ -5,5 +5,6 @@ export const toyLoaders: Partial<Record<ToyName, ToyLoader>> = {
 	eskiz: () => import('./EskizBoard.svelte'),
 	'spor-cli': () => import('./SporCli.svelte'),
 	'person-alarm': () => import('./PersonAlarm.svelte'),
-	'mimic-robot': () => import('./MimicRobot.svelte')
+	'mimic-robot': () => import('./MimicRobot.svelte'),
+	'smile-mirror': () => import('./SmileMirror.svelte')
 };
