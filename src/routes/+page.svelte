@@ -9,7 +9,10 @@
 
 	let { data }: PageProps = $props();
 
+	const HOME_POSTS = 5;
+
 	const featured = projects.filter((project) => project.home);
+	const latest = $derived(data.posts.slice(0, HOME_POSTS));
 </script>
 
 <svelte:head>
@@ -46,8 +49,11 @@
 	</section>
 
 	<section id="writing" class="list" aria-labelledby="writing-heading">
-		<h2 id="writing-heading" class="mono">writing</h2>
-		{#each data.posts as post (post.slug)}
+		<div class="heading">
+			<h2 id="writing-heading" class="mono">writing</h2>
+			<a class="all mono" href="/blog">all writings →</a>
+		</div>
+		{#each latest as post (post.slug)}
 			<ListItem
 				href="/blog/{post.slug}"
 				label={formatDate(post.date, 'month')}
@@ -58,10 +64,13 @@
 	</section>
 
 	<section class="list" aria-labelledby="works-heading">
-		<h2 id="works-heading" class="mono">works</h2>
+		<div class="heading">
+			<h2 id="works-heading" class="mono">works</h2>
+			<a class="all mono" href="/works">all works →</a>
+		</div>
 		{#each featured as project (project.slug)}
 			<ListItem
-				href={project.href ?? `/works#${project.slug}`}
+				href="/works#{project.slug}"
 				label={project.home?.label ?? ''}
 				title={project.name}
 				suffix="— {project.home?.line}"
@@ -110,10 +119,27 @@
 		gap: 8px;
 	}
 
+	.heading {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 16px;
+		margin-bottom: 8px;
+	}
+
 	h2 {
-		margin: 0 0 8px;
+		margin: 0;
 		font-size: 14px;
 		font-weight: 400;
 		color: var(--muted);
+	}
+
+	.all {
+		font-size: 13px;
+		color: var(--muted);
+	}
+
+	.all:hover {
+		color: var(--accent);
 	}
 </style>
