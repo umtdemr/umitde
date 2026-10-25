@@ -4,7 +4,7 @@
 	import ThemeToggle from './ThemeToggle.svelte';
 
 	const links: { section: Section; href: string }[] = [
-		{ section: 'writing', href: '/#writing' },
+		{ section: 'writing', href: '/blog' },
 		{ section: 'works', href: '/works' },
 		{ section: 'about', href: '/about' }
 	];

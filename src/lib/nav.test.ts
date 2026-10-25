@@ -4,6 +4,7 @@ import { activeSection } from './nav';
 describe('activeSection', () => {
 	it.each([
 		['/', null],
+		['/blog', 'writing'],
 		['/blog/x', 'writing'],
 		['/blog/x/', 'writing'],
 		['/works', 'works'],

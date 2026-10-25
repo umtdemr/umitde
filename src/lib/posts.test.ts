@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { adjacent, formatDate, readingMinutes, toSummaries } from './posts';
+import { adjacent, formatDate, groupByYear, readingMinutes, toSummaries } from './posts';
 import type { PostMeta, PostSummary } from './types';
 
 describe('formatDate', () => {
@@ -19,6 +19,10 @@ describe('formatDate', () => {
 
 	it('formats a month', () => {
 		expect(formatDate('2026-03-26T00:00:00.000Z', 'month')).toBe('Mar 2026');
+	});
+
+	it('formats a month and day with a padded day', () => {
+		expect(formatDate('2024-04-06T00:00:00.000Z', 'monthDay')).toBe('Apr 06');
 	});
 });
 
@@ -109,5 +113,31 @@ describe('adjacent', () => {
 
 	it('returns nulls for an unknown slug', () => {
 		expect(adjacent(posts, 'nope')).toEqual({ older: null, newer: null });
+	});
+});
+
+describe('groupByYear', () => {
+	const post = (slug: string, date: string): PostSummary => ({
+		slug,
+		title: slug,
+		date,
+		tag: null,
+		readingMinutes: 1
+	});
+
+	it('groups newest-first posts by UTC year, keeping their order', () => {
+		const posts = [
+			post('c', '2025-11-24T00:00:00.000Z'),
+			post('b', '2024-08-26T00:00:00.000Z'),
+			post('a', '2024-01-01T00:00:00.000Z')
+		];
+		expect(groupByYear(posts)).toEqual([
+			{ year: '2025', posts: [posts[0]] },
+			{ year: '2024', posts: [posts[1], posts[2]] }
+		]);
+	});
+
+	it('returns no groups for no posts', () => {
+		expect(groupByYear([])).toEqual([]);
 	});
 });

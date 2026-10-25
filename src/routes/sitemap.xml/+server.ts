@@ -64,7 +64,7 @@ export async function GET({ setHeaders }: any) {
 		);
 		const posts = all.filter((post) => post.published);
 
-		const pagePaths = ['', '/about', '/works'];
+		const pagePaths = ['', '/blog', '/about', '/works'];
 		const pages = pagePaths.map((element) => `${siteUrl}${element}`);
 
 		setHeaders({

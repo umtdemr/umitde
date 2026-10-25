@@ -2,13 +2,14 @@ import type { PostMeta, PostSummary } from './types';
 
 const WORDS_PER_MINUTE = 200;
 
-const DATE_FORMATS: Record<'day' | 'month', Intl.DateTimeFormatOptions> = {
+const DATE_FORMATS = {
 	day: { month: 'short', day: 'numeric', year: 'numeric' },
-	month: { month: 'short', year: 'numeric' }
-};
+	month: { month: 'short', year: 'numeric' },
+	monthDay: { month: 'short', day: '2-digit' }
+} satisfies Record<string, Intl.DateTimeFormatOptions>;
 
 /** Frontmatter dates are UTC midnight, so format in UTC or the day shifts west of Greenwich. */
-export function formatDate(iso: string, style: 'day' | 'month'): string {
+export function formatDate(iso: string, style: keyof typeof DATE_FORMATS): string {
 	return new Date(iso).toLocaleDateString('en-US', { ...DATE_FORMATS[style], timeZone: 'UTC' });
 }
 
@@ -47,4 +48,16 @@ export function adjacent(
 	const index = posts.findIndex((post) => post.slug === slug);
 	if (index === -1) return { older: null, newer: null };
 	return { older: posts[index + 1] ?? null, newer: posts[index - 1] ?? null };
+}
+
+/** `posts` must be sorted newest first; groups keep that order. */
+export function groupByYear(posts: PostSummary[]): { year: string; posts: PostSummary[] }[] {
+	const groups: { year: string; posts: PostSummary[] }[] = [];
+	for (const post of posts) {
+		const year = String(new Date(post.date).getUTCFullYear());
+		const last = groups.at(-1);
+		if (last?.year === year) last.posts.push(post);
+		else groups.push({ year, posts: [post] });
+	}
+	return groups;
 }
