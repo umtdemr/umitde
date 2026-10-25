@@ -1,24 +1,18 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import { mdsvex, escapeSvelte } from "mdsvex";
-import { getHighlighter } from "shiki";
-
+import { mdsvex, escapeSvelte } from 'mdsvex';
+import { highlight } from './src/lib/shiki/highlight.js';
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
 	extensions: ['.md'],
 	highlight: {
-		highlighter: async (code, lang = 'text') => {
-			const highlighter = await getHighlighter({
-				themes: ['github-dark'],
-				langs: ['javascript', 'typescript', 'go', 'lua'],
-			})
-			await highlighter.loadLanguage('javascript', 'typescript', 'go')
-			const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'github-dark' }))
-			return `{@html \`${html}\` }`
+		highlighter: async (code, lang) => {
+			const html = escapeSvelte(await highlight(code, lang ?? undefined));
+			return `{@html \`${html}\` }`;
 		}
-	},
-}
+	}
+};
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -26,7 +20,12 @@ const config = {
 	preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
 
 	kit: {
-		adapter: adapter()
+		// unknown URLs get 404.html, which renders src/routes/+error.svelte inside the site shell
+		adapter: adapter({ fallback: '404.html' }),
+		// sitemap.xml is not linked from any page, so the crawler needs it as an explicit entry
+		prerender: {
+			entries: ['*', '/sitemap.xml']
+		}
 	}
 };
 

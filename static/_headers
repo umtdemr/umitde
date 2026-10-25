@@ -1,0 +1,4 @@
+# Cloudflare Pages headers: https://developers.cloudflare.com/pages/configuration/headers/
+# files under /_app/immutable have content hashes in their names, so they never change
+/_app/immutable/*
+  Cache-Control: public, max-age=31536000, immutable

@@ -1,75 +1,45 @@
 import website from '$lib/config/website';
-import { error } from '@sveltejs/kit';
+import { getPosts } from '$lib/posts.server';
+import type { RequestHandler } from './$types';
 
-type Pages = string[];
-type SitemapPost = {
-    lastUpdated: string;
-    slug: string;
-}
-
+// endpoints don't inherit prerender from +layout.ts
 export const prerender = true;
 
-const { siteUrl } = website;
+type Entry = { path: string; lastmod?: string };
 
-const render = (pages: Pages, posts: SitemapPost[]) => `<?xml version="1.0" encoding="UTF-8" ?>
-<urlset
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-	xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
-  xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-  xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
-  xmlns:pagemap="http://www.google.com/schemas/sitemap-pagemap/1.0"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	>
-
-	${pages
-    .map(
-        (element) => `
-	<url>
-	  <loc>${element}</loc>
-		<lastmod>${`${process.env.VITE_BUILD_TIME}`}</lastmod>
-	</url>`,
-    )
-    .join('\n')}
-
-	${posts
-    .map((element) => {
-        const { lastUpdated, slug } = element;
-        return `
-	<url>
-	  <loc>${siteUrl}/blog/${slug}</loc>
-		<lastmod>${`${new Date(lastUpdated).toISOString()}`}</lastmod>
-	</url>
-	`;
-    })
-    .join('')}
+const render = (entries: Entry[]) => `<?xml version="1.0" encoding="UTF-8" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries
+	.map(
+		({ path, lastmod }) => `	<url>
+		<loc>${website.siteUrl}${path}</loc>${lastmod ? `\n\t\t<lastmod>${lastmod}</lastmod>` : ''}
+	</url>`
+	)
+	.join('\n')}
 </urlset>`;
 
-export async function GET({ setHeaders }: any) {
-    try {
-        const mdModules = import.meta.glob('../../posts/**/*.md');
-        const posts = await Promise.all(
-            Object.keys(mdModules).map(async (path) => {
-                const slug = path.split('/').at(-2)!;
-                const { metadata } = await mdModules[path]();
-                const { lastUpdated } = metadata;
-                return { lastUpdated, slug };
-            }),
-        );
+export const GET: RequestHandler = () => {
+	const posts = getPosts();
+	const postEntries = posts.map((post) => ({
+		path: `/blog/${post.slug}`,
+		lastmod: post.updated ?? post.date
+	}));
+	// the home page and /blog list posts, so they change when a post does
+	const newest = postEntries.reduce<string | undefined>(
+		(latest, { lastmod }) => (latest && latest > lastmod ? latest : lastmod),
+		undefined
+	);
 
-        const pagePaths = ['', '/about', '/works'];
-        const pages = pagePaths.map((element) => `${siteUrl}${element}`);
+	// static pages get no lastmod: a build timestamp would change on every deploy and teach crawlers to ignore it
+	const entries: Entry[] = [
+		{ path: '', lastmod: newest },
+		{ path: '/blog', lastmod: newest },
+		{ path: '/about' },
+		{ path: '/works' },
+		...postEntries
+	];
 
-        setHeaders({
-            'Cache-Control': 'max-age=0, s-max-age=600',
-            'Content-Type': 'application/xml',
-        });
-
-        return new Response(render(pages, posts));
-    } catch (err: any) {
-        // todo: redirect
-        error(500, err);
-    }
-}
+	return new Response(render(entries), {
+		headers: { 'content-type': 'application/xml; charset=utf-8' }
+	});
+};

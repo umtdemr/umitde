@@ -1,189 +1,146 @@
-<script>
-	import JourneyJson from './journey.json';
-	import {page} from "$app/stores";
-	import website from "$lib/config/website";
+<script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
+	import website from '$lib/config/website';
+	import journey from './journey.json';
+
+	const title = `About - ${website.siteTitle}`;
+	const description =
+		"Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer. I live in Istanbul Turkey. " +
+		'I love coding, problem solving, fitness and photography. ' +
+		"Unlike most of the developers, I'm not that much into coffee. " +
+		"Yes, I like it but I'm not particular about the beans or the brewing method. " +
+		'I use Typescript, React, Svelte, Node js, Go and Python at my projects.';
 </script>
 
-<svelte:head>
-	<title>About - {website.siteTitle}</title>
-	<meta name="description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
-			I live in Istanbul Turkey.
+<Seo {title} {description} />
 
-			I love coding, problem solving, fitness and photography.
-			Unlike most of the developers, I'm not that much into coffee.
-			Yes, I like it but I'm not particular about the beans or the brewing method.
-
-			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
-	" />
-
-	<meta property="og:title" content={`About - ${website.siteTitle}`} />
-	<meta name="og:description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
-			I live in Istanbul Turkey.
-
-			I love coding, problem solving, fitness and photography.
-			Unlike most of the developers, I'm not that much into coffee.
-			Yes, I like it but I'm not particular about the beans or the brewing method.
-
-			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
-	" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content={$page.url.href} />
-
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:site" content="@mediumgoal" />
-	<meta property="twitter:creator" content="@mediumgoal" />
-	<meta property="twitter:title" content={`About - ${website.siteTitle}`} />
-	<meta name="twitter:description" content="Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
-			I live in Istanbul Turkey.
-
-			I love coding, problem solving, fitness and photography.
-			Unlike most of the developers, I'm not that much into coffee.
-			Yes, I like it but I'm not particular about the beans or the brewing method.
-
-			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
-	" />
-</svelte:head>
-
-<section class="about">
-	<h1 class="section_title">About</h1>
-	<div class="section_desc">
+<main class="col">
+	<section class="intro">
+		<h1>About</h1>
 		<p>
-			Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer.
-			I live in Istanbul Turkey.
+			Hi, I'm Ümit (means hope in Turkish), and I'm a software engineer. I live in Istanbul Turkey.
 		</p>
 		<p>
-			I love coding, problem solving, fitness and photography.
-			Unlike most of the developers, I'm not that much into coffee.
-			Yes, I like it but I'm not particular about the beans or the brewing method.
+			I love coding, problem solving, fitness and photography. Unlike most of the developers, I'm
+			not that much into coffee. Yes, I like it but I'm not particular about the beans or the
+			brewing method.
 		</p>
+		<p>I use Typescript, React, Svelte, Node js, Go and Python at my projects.</p>
 		<p>
-			I use Typescript, React, Svelte, Node js, Go and Python at my projects.
+			To contact me, you can send a mail to
+			<a href="mailto:umitde296@gmail.com">umitde296@gmail.com</a>
 		</p>
-		<p>
-			To contact me, you can send a mail to <a href="mailto:umitde296@gmail.com">umitde296@gmail.com</a>
-		</p>
-	</div>
-</section>
-<section class="journey">
-	<h1 class="section_title">Journey</h1>
-	<div class="journey_list">
-		{#each  JourneyJson.data as journeyData}
-			<div class="journey__content">
-				<span class="journey__content--year">{journeyData.year}</span>
-				<div class="journey__content--list">
-					{#each journeyData.content as journeyContent, index}
-						<div class="journey__item">
-							<span class="journey__item--step">
-								<span class="step_circle">
-									<span class="step_circle_inner">
-									</span>
-								</span>
-								{#if index < journeyData.content.length - 1}
-									<span class="step_stick"></span>
-								{/if}
-							</span>
-							<span class="journey__item--title">{journeyContent.title}</span>
-							<p class="journey__item--info">{journeyContent.desc}</p>
-						</div>
+	</section>
+
+	<section class="journey" aria-labelledby="journey-heading">
+		<h2 id="journey-heading" class="mono">journey</h2>
+		{#each journey.data as group (group.year)}
+			<div class="group">
+				<span class="year mono">{group.year}</span>
+				<ul>
+					{#each group.content as entry (entry.title)}
+						<li>
+							<span class="title">{entry.title}</span>
+							<p>{entry.desc}</p>
+						</li>
 					{/each}
-				</div>
+				</ul>
 			</div>
 		{/each}
-	</div>
-</section>
+	</section>
+</main>
 
-
-<style lang="scss">
-	.about {
-		.section_desc {
-			p {
-				margin-top: 2rem;
-			}
-		}
-		@media screen and (max-width: 790px) {
-			.section_desc {
-				p {
-					margin-top: 1.2rem;
-				}
-			}
-
-		}
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: 64px;
+		padding-top: 24px;
+		padding-bottom: 80px;
 	}
+
+	.intro {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	h1 {
+		margin: 0;
+		font-size: 32px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.intro p {
+		margin: 0;
+		font-size: 18px;
+		line-height: 1.65;
+		color: var(--text2);
+	}
+
+	.intro a {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
 	.journey {
-		margin-top: 75px;
-		padding-bottom: 50px;
-		&__content {
-			display: flex;
-			gap: 28px;
-			&--year {
-				font-size: 1.25rem;
-				color: var(--color-text-1);
-			}
-			&--list {
-				display: flex;
-				flex-direction: column;
-				gap: 30px;
-			}
-			@media screen and (max-width: 790px) {
-				flex-direction: column;
-			}
-		}
-		.journey_list {
-			display: flex;
-			flex-direction: column;
-			gap: 50px;
-			@media screen and (max-width: 790px) {
-				margin-top: 30px;
-			}
-		}
-		&__item {
-			position: relative;
-			&--step {
-				position: absolute;
-				height: 100%;
-				.step_circle {
-					width: 21px;
-					height: 21px;
-					border-radius: 50%;
-					border: 1px solid var(--color-blue);
-					display: block;
-					position: relative;
-				}
-				.step_circle_inner {
-					width: 5px;
-					height: 5px;
-					border-radius: 50%;
-					background-color: #fff;
-					display: block;
-					position: absolute;
-					left: 50%;
-					top: 50%;
-					transform: translate(-50%, -50%);
-				}
-				.step_stick {
-					width: 1px;
-					background-color: var(--color-blue);
-					display: block;
-					position: absolute;
-					left: 50%;
-					transform: translateX(-50%);
-					height: calc(100% - 21px + 30px);
-				}
-			}
-			&--title {
-				font-size: 1rem;
-				color: var(--color-text-1);
-				margin-left: 40px;
-			}
-			&--info {
-				font-size: 0.875rem;
-				margin-top: 10px;
-				line-height: 1.3rem;
-				margin-left: 40px;
-			}
-		}
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
 	}
-	.journey_list {
-		margin-top: 55px;
+
+	h2 {
+		margin: 0 0 8px;
+		font-size: 14px;
+		font-weight: 400;
+		color: var(--muted);
+	}
+
+	/* same columns as the home page lists */
+	.group {
+		display: grid;
+		grid-template-columns: 96px 1fr;
+		gap: 16px;
+		align-items: baseline;
+		padding: 10px 0;
+	}
+
+	.year {
+		font-size: 13px;
+		color: var(--muted);
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	li {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.title {
+		font-size: 18px;
+	}
+
+	li p {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.55;
+		color: var(--text2);
+	}
+
+	@media (max-width: 560px) {
+		.group {
+			grid-template-columns: 1fr;
+			gap: 2px;
+		}
 	}
 </style>

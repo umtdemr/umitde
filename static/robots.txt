@@ -2,5 +2,4 @@
 User-agent: *
 Allow: /
 
-Host: https://umitde.com
 Sitemap: https://umitde.com/sitemap.xml

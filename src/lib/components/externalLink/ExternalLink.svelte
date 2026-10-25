@@ -1,6 +1,5 @@
-<script>
-    export let link;
-    export let text;
+<script lang="ts">
+	let { link, text }: { link: string; text: string } = $props();
 </script>
 
-<a href={link} rel="nofollow" target="_blank">{text}</a>
+<a href={link} rel="nofollow noopener" target="_blank">{text}</a>

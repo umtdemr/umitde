@@ -1,26 +1,19 @@
-<script>
-    export let data;
+<script lang="ts">
+	import type { ImageData } from '$lib/types';
+
+	let { data }: { data: ImageData & { alt: string } } = $props();
 </script>
 
 <picture>
-    {#each data.sources as source}
-        <source srcset={source.srcset} type={source.type} />
-    {/each}
-    <img
-        alt={data.alt}
-        class="lazy"
-        decoding="async"
-        width={data.width}
-        height={data.height}
-        src={data.src}
-    />
+	{#each data.sources as source (source.type)}
+		<source srcset={source.srcset} type={source.type} />
+	{/each}
+	<img
+		alt={data.alt}
+		loading="lazy"
+		decoding="async"
+		width={data.width}
+		height={data.height}
+		src={data.src}
+	/>
 </picture>
-
-
-<style lang="scss">
-   img {
-     @media screen and (max-width: 790px) {
-        height: auto;
-     }
-   }
-</style>

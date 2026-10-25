@@ -1,7 +1,5 @@
 <script lang="ts">
-    
-    export let text: string; 
-    export let htmlTag: string;
+	let { text, htmlTag }: { text: string; htmlTag: string } = $props();
 </script>
 
-{@html `<${htmlTag} class="bullet-title">${text}</${htmlTag}>`}
+<svelte:element this={htmlTag} class="bullet-title">{text}</svelte:element>
